@@ -4,7 +4,7 @@ import {SearchBar} from 'react-native-elements';
 import {SCREEN_WIDTH} from 'UgandaTrees/src/styles/globalStyles'
 import {connect} from 'react-redux';
 
-import {updateSearch} from 'UgandaTrees/src/reducers/reducer';
+import {updateSearch} from 'UgandaTrees/src/actions';
 
 class Searchbar extends Component {
   

@@ -30,10 +30,19 @@ export var styles = StyleSheet.create({
     width: null,
     resizeMode: 'center'
   },
+  cardRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center'
+  },
   cardTitle: {
+    padding: 5,
     fontWeight: 'bold',
     padding: 10,
     fontSize: 22,
     color: 'black',
   },
+  favoriteIcon: {
+    paddingRight: 10,
+  }
 });

@@ -1,7 +1,7 @@
 export const dummyData = [
     {
       name: "Coffee",
-      image_src: require('../images/coffea1.jpg'),
+      image_src: require('UgandaTrees/src/assets/images/coffea1.jpg'),
       basic_info: "Multos mandaremus hic mentitum. In quo summis dolor duis an appellat distinguantur se aliquip, excepteur quo amet an an quo minim incididunt, dolor ut nam dolore pariatur, quo se aliqua eiusmod, de culpa ex noster, a elit fabulas. In sint ullamco. Tempor graviterque incurreret minim excepteur",
       stats: {
         Height: "8 ft", 
@@ -13,7 +13,7 @@ export const dummyData = [
     },
     {
       name: "Maple",
-      image_src: require('../images/coffea1.jpg'),
+      image_src: require('UgandaTrees/src/assets/images/coffea1.jpg'),
       basic_info: "Multos mandaremus hic mentitum. In quo summis dolor duis an appellat distinguantur se aliquip, excepteur quo amet an an quo minim incididunt, dolor ut nam dolore pariatur, quo se aliqua eiusmod, de culpa ex noster, a elit fabulas. In sint ullamco. Tempor graviterque incurreret minim excepteur",
       stats: {
         Height: "7 ft", 
@@ -25,7 +25,7 @@ export const dummyData = [
     },
     {
       name: "Mahogany",
-      image_src: require('../images/coffea1.jpg'),
+      image_src: require('UgandaTrees/src/assets/images/coffea1.jpg'),
       basic_info: "Multos mandaremus hic mentitum. In quo summis dolor duis an appellat distinguantur se aliquip, excepteur quo amet an an quo minim incididunt, dolor ut nam dolore pariatur, quo se aliqua eiusmod, de culpa ex noster, a elit fabulas. In sint ullamco. Tempor graviterque incurreret minim excepteur",
       stats: {
         Height: "9 ft", 

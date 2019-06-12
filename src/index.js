@@ -5,10 +5,10 @@ import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 
 import ExploreScreen from './navigators/ExploreScreen';
-import FavoritesScreen from './features/favorites';
+import FavoritesScreen from './navigators/FavoritesScreen';
 import TagScreen from './features/tag';
 
-import reducer from './reducers/reducer'
+import reducer from './reducers'
 
 const store = createStore(reducer);
 

@@ -1,12 +1,17 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, ScrollView} from 'react-native';
+import TreeCard from '../../components/tree_card';
+import {connect} from 'react-redux'
 
-export default class Favorites extends Component {
+class Favorites extends Component {
   render(){
+    
     return (
-      <View style={styles.container}>
-        <Text>Hello World</Text>
-      </View>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        {this.props.favoritesList.map((tree, index) => {
+          return (<TreeCard key={index} name={tree.name} image_src={tree.image_src} isForcefullyFavorited={true} navigation={this.props.navigation}/>)
+        })}
+      </ScrollView>
     );
   }
 }
@@ -18,3 +23,11 @@ var styles = StyleSheet.create({
     alignItems: 'center',
   }
 });
+
+const mapStateToProps = (state) => {
+  return {
+    favoritesList: state.favorites,
+  }
+}
+
+export default connect(mapStateToProps)(Favorites);
