@@ -8,9 +8,7 @@ import ExploreScreen from './features/explore';
 import FavoritesScreen from './features/favorites';
 import TagScreen from './features/tag';
 
-const reducer = (state) => {
-  return state
-}
+import reducer from './reducers/reducer'
 
 const store = createStore(reducer);
 
