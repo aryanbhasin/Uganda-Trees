@@ -32,7 +32,7 @@ export var styles = StyleSheet.create({
   },
   cardTitle: {
     fontWeight: 'bold',
-    margin: 10,
+    padding: 10,
     fontSize: 22,
     color: 'black',
   },

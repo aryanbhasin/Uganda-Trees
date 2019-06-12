@@ -4,13 +4,14 @@ import {StyleSheet, Text, View} from 'react-native';
 import TreeCardList from './components/TreeCardList';
 import Searchbar from './components/Searchbar';
 
+import TreeInfo from '../../components/tree_info';
+
 export default class Explore extends Component {
   render(){
     return (
       <View style={styles.container}>
         <Searchbar />
-        <TreeCardList />
-        
+        <TreeCardList navigation={this.props.navigation} />
       </View>
     );
   }
@@ -18,6 +19,6 @@ export default class Explore extends Component {
 
 var styles = StyleSheet.create({
   container: {
-    marginTop: 50
+    marginTop: 5
   }
 });

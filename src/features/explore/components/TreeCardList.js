@@ -19,8 +19,8 @@ class TreeCardList extends Component {
   render() {
     return (
       <ScrollView style={styles.cardListScroll} keyboardShouldPersistTaps='never' showsVerticalScrollIndicator={false}>
-        {this.props.searchResults.map((card) => {
-          return (<TreeCard key={card.name} name={card.name}/>)
+        {this.props.searchResults.map((tree, index) => {
+          return (<TreeCard key={index} name={tree.name} image_src={tree.image_src} navigation={this.props.navigation}/>)
         })}
       </ScrollView>
     );

@@ -4,7 +4,7 @@ import {createBottomTabNavigator, createAppContainer} from 'react-navigation';
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 
-import ExploreScreen from './features/explore';
+import ExploreScreen from './navigators/ExploreScreen';
 import FavoritesScreen from './features/favorites';
 import TagScreen from './features/tag';
 
