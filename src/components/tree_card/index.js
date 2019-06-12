@@ -9,6 +9,8 @@ export default class TreeCard extends Component {
     
     StatusBar.setBarStyle('dark-content', true);
     
+    const {name} = this.props;
+    
     // replace image url and tree name with props
     return (
  
@@ -18,7 +20,7 @@ export default class TreeCard extends Component {
               <Image source={require('../../assets/images/coffea1.jpg')} style={styles.cardImage} />
             </View>
             <View>
-              <Text style={styles.cardTitle}>Tree Name</Text>
+              <Text style={styles.cardTitle}>{name}</Text>
             </View>
           </TouchableOpacity>
         </View>

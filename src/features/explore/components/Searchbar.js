@@ -4,21 +4,17 @@ import {SearchBar} from 'react-native-elements';
 import {SCREEN_WIDTH} from 'UgandaTrees/src/styles/globalStyles'
 import {connect} from 'react-redux';
 
-import {updateSearchTerm} from 'UgandaTrees/src/reducers/reducer';
+import {updateSearch} from 'UgandaTrees/src/reducers/reducer';
 
 class Searchbar extends Component {
-  
-  updateText(text) {
-    
-  }
   
   render() {
     return (
       <View style={styles.searchBarContainer}>
         <SearchBar 
           placeholder='Search for a tree'
-          onChangeText={(text) => {this.props.updateSearchTerm(text)}}
-          onClear={(text) => {this.props.updateSearchTerm('')}}
+          onChangeText={(text) => {this.props.updateSearch(text)}}
+          onClear={(text) => {this.props.updateSearch('')}}
           value={this.props.searchTerm}
           autoCorrect={false}
           lightTheme
@@ -45,12 +41,12 @@ var styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
   return {
-    searchTerm: state.searchTerm
+    searchTerm: state.search.searchTerm
   }
 };
 
 const mapDispatchToProps = {
-  updateSearchTerm
+  updateSearch
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Searchbar)
