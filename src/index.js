@@ -4,7 +4,7 @@ import {createBottomTabNavigator, createAppContainer} from 'react-navigation';
 
 import ExploreScreen from './navigators/ExploreScreen';
 import FavoritesScreen from './navigators/FavoritesScreen';
-import TagScreen from './features/tag';
+import TagScreen from './navigators/TagScreen';
 
 import {store, persistor} from './store';
 import {Provider} from 'react-redux';
@@ -38,7 +38,7 @@ class EntryPoint extends Component {
   
   render() {
     // uncomment below line to clear redux-persist storage anytime you change state and stuff
-    // storage.removeItem('persist:root')
+    storage.removeItem('persist:root')
     return (
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>

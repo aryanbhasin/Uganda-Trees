@@ -1,20 +1,16 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
+import CapturePic from './Components/CapturePic';
 
 export default class Tag extends Component {
+  
+  static navigationOptions = { header: null } 
+
   render(){
     return (
-      <View style={styles.container}>
-        <Text>Hello World</Text>
-      </View>
+        <CapturePic navigation={this.props.navigation} />
     );
   }
 }
 
-var styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  }
-});
+

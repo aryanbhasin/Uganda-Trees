@@ -30,7 +30,6 @@ var styles= StyleSheet.create({
 });
 
 const mapStateToProps = (state) => {
-  console.log(state.favorites);
   return {
     searchResults: state.search.searchResults,
     favStatus: state.favorites.favStatus,
