@@ -1,16 +1,14 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {createBottomTabNavigator, createAppContainer} from 'react-navigation';
-import {createStore} from 'redux';
-import {Provider} from 'react-redux';
 
 import ExploreScreen from './navigators/ExploreScreen';
 import FavoritesScreen from './navigators/FavoritesScreen';
 import TagScreen from './features/tag';
 
-import reducer from './reducers'
-
-const store = createStore(reducer);
+import {store, persistor} from './store';
+import {Provider} from 'react-redux';
+import { PersistGate } from 'redux-persist/lib/integration/react';
 
 
 const RootTabNav = createBottomTabNavigator(
@@ -36,7 +34,9 @@ class EntryPoint extends Component {
   render() {
     return (
       <Provider store={store}>
-        <AppContainer />
+        <PersistGate loading={null} persistor={persistor}>
+          <AppContainer />
+        </PersistGate>
       </Provider>
       
     );
