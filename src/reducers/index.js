@@ -17,14 +17,34 @@ function search(state = initialSearchState, action) {
   }
 }
 
-function favorites(state = [], action) {
+var initialFavoriteState = [];
+// initializes initialFavoriteState by pushing each tree with isFavorited set to false
+dummyData.forEach(tree => initialFavoriteState.push({name: tree.name, isFavorited: false, image_src: tree.image_src}))
+
+function favorites(state = initialFavoriteState, action) {
+  var newState = state;
   switch(action.type) {
     case ADD_FAVORITE:
-      return [...state, {name: action.payload.name, image_src: action.payload.image_src} ]
+      newState = state.map((tree) => {
+        var returnVal = {...tree};
+        if (tree.name === action.payload) {
+          returnVal.isFavorited = true;
+        }
+        return returnVal
+      });
+      return newState;
     case DELETE_FAVORITE:
-      return (state.filter((tree) => tree.name !== action.payload));
+      newState = state.map((tree) => {
+        var returnVal = {...tree};
+        if (tree.name === action.payload) {
+          returnVal.isFavorited = false;
+        }
+        return returnVal
+      });
+      return newState;
     default:
-      return state;
+      // initial state returned as default
+      return newState;
   }
 }
 

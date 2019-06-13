@@ -13,14 +13,11 @@ class TreeCard extends Component {
     isFavorited: false
   }
   
-  handleFavorite(name) {
-    const favoriteStatus = (this.props.isForcefullyFavorited) || this.state.isFavorited;
-    if (favoriteStatus) {
-      this.setState({isFavorited: false});
-      this.props.deleteFavorite(name) 
+  handleFavorite(treeName, isFavorited) {
+    if (isFavorited) {
+      this.props.deleteFavorite(treeName);
     } else {
-      this.setState({isFavorited: true})
-      this.props.addFavorite(name);
+      this.props.addFavorite(treeName);
     }
   }
   
@@ -29,8 +26,7 @@ class TreeCard extends Component {
     
     StatusBar.setBarStyle('dark-content', true);
     
-    const {name, image_src, isForcefullyFavorited} = this.props;
-    const favoriteStatus = isForcefullyFavorited || this.state.isFavorited;
+    const {name, image_src, isFavorited} = this.props;
     
     // replace image url and tree name with props
     return (
@@ -42,8 +38,8 @@ class TreeCard extends Component {
             </View>
             <View style={styles.cardRow}>
               <Text style={styles.cardTitle}>{name}</Text>
-              <TouchableOpacity style={styles.favoriteIcon} onPress={() => {this.handleFavorite(name)}}>
-                <Icon name={favoriteStatus ? 'heart' : 'heart-outlined'} color='tomato' size={26}/>
+              <TouchableOpacity style={{paddingRight: 5}} onPress={() => {this.handleFavorite(name, isFavorited)}}>
+                <Icon style={styles.favoriteIcon} name={isFavorited ? 'heart' : 'heart-outlined'} color='tomato' size={26}/>
               </TouchableOpacity>
             </View>
           </TouchableOpacity>

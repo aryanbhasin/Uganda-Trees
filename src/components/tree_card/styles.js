@@ -43,6 +43,6 @@ export var styles = StyleSheet.create({
     color: 'black',
   },
   favoriteIcon: {
-    paddingRight: 10,
+    padding: 4,
   }
 });

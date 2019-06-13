@@ -26,13 +26,9 @@ export function updateSearch(text) {
 }
 
 export function addFavorite(treeName) {
-  const treeInfo = dummyData.find((tree) => tree.name===treeName);
   return {
     type: ADD_FAVORITE,
-    payload: {
-      name: treeInfo.name,
-      image_src: treeInfo.image_src,
-    }
+    payload: treeName,
   }
 }
 
