@@ -17,34 +17,38 @@ function search(state = initialSearchState, action) {
   }
 }
 
-var initialFavoriteState = [];
-// initializes initialFavoriteState by pushing each tree with isFavorited set to false
-dummyData.forEach(tree => initialFavoriteState.push({name: tree.name, isFavorited: false, image_src: tree.image_src}))
+var initFavStatus = [];
+// initializes initialFavStatus by pushing each tree with isFavorited set to false
+dummyData.forEach(tree => initFavStatus.push({name: tree.name, isFavorited: false, image_src: tree.image_src}))
 
-function favorites(state = initialFavoriteState, action) {
-  var newState = state;
+const initialState = {
+  favStatus: initFavStatus,
+  numFavorites: 0,
+};
+
+function favorites(state = initialState, action) {
+  var newFavStatus;
   switch(action.type) {
     case ADD_FAVORITE:
-      newState = state.map((tree) => {
+      newFavStatus = state.favStatus.map((tree) => {
         var returnVal = {...tree};
         if (tree.name === action.payload) {
           returnVal.isFavorited = true;
         }
         return returnVal
       });
-      return newState;
+      return {...state, numFavorites: state.numFavorites + 1, favStatus: newFavStatus};
     case DELETE_FAVORITE:
-      newState = state.map((tree) => {
+      newFavStatus = state.favStatus.map((tree) => {
         var returnVal = {...tree};
         if (tree.name === action.payload) {
           returnVal.isFavorited = false;
         }
         return returnVal
       });
-      return newState;
+      return {...state, numFavorites: state.numFavorites - 1, favStatus: newFavStatus};;
     default:
-      // initial state returned as default
-      return newState;
+      return state;
   }
 }
 

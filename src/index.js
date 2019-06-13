@@ -10,6 +10,8 @@ import {store, persistor} from './store';
 import {Provider} from 'react-redux';
 import { PersistGate } from 'redux-persist/lib/integration/react';
 
+import storage from 'redux-persist/lib/storage';
+
 
 const RootTabNav = createBottomTabNavigator(
   {
@@ -28,10 +30,15 @@ const RootTabNav = createBottomTabNavigator(
   }
 );
 
+//   
 const AppContainer = createAppContainer(RootTabNav);
 
 class EntryPoint extends Component {
+  
+  
   render() {
+    // uncomment below line to clear redux-persist storage anytime you change state and stuff
+    // storage.removeItem('persist:root')
     return (
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>

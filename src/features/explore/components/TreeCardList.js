@@ -12,7 +12,7 @@ class TreeCardList extends Component {
       <ScrollView style={styles.cardListScroll} keyboardShouldPersistTaps='never' showsVerticalScrollIndicator={false}>
         {this.props.searchResults.map((tree, index) => {
           // goes through favorites state to find isFavorited status of
-          var currTree = this.props.favoritesState.find((item) => {
+          var currTree = this.props.favStatus.find((item) => {
             return (item.name === tree.name);
           }); 
           const isTreeFavorited = currTree.isFavorited;
@@ -30,10 +30,10 @@ var styles= StyleSheet.create({
 });
 
 const mapStateToProps = (state) => {
-  console.log(state.favorites)
+  console.log(state.favorites);
   return {
     searchResults: state.search.searchResults,
-    favoritesState: state.favorites,
+    favStatus: state.favorites.favStatus,
   }
 };
 

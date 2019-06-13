@@ -6,26 +6,24 @@ import Icon from 'react-native-vector-icons/Entypo'
 
 class Favorites extends Component {
   
-  addFavoritesText(numFavorites) {
+  addFavoritesText(numFav) {
     return (
-      <View style={{alignSelf: 'center', margin: 20, alignItems: 'center'}}>
-        {numFavorites === 0 && (<Text style={[styles.addFavoritesText, styles.noFavoritesText]}>No favorites in mind?</Text>)}
+      <View style={[styles.favoritesTextContainer]}>
+        {numFav === 0 && (<Text style={[styles.addFavoritesText, styles.noFavoritesText]}>No favorites in mind?</Text>)}
         <Text style={styles.addFavoritesText}>Add a tree to your favorites list by pressing the {(<Icon name='heart' size={15}/>)} icon</Text>
       </View>
     );
   }
   
   render(){
-    let numFavorites = 0;
     return (
-      <ScrollView showsVerticalScrollIndicator={false}>
-        {this.props.favoritesState.map((tree, index) => {
+      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={this.props.numFavorites === 0 && styles.noFavoritesTextContainer}>
+        {this.props.favStatus.map((tree, index) => {
           if (tree.isFavorited) {
-            numFavorites++;
-            return (<TreeCard key={index} name={tree.name} image_src={tree.image_src} isFavorited={true} navigation={this.props.navigation}/>)
-          }  
+            return (<TreeCard key={index} name={tree.name} image_src={tree.image_src} isFavorited={true} navigation={this.props.navigation}/>)  
+          }
         })}
-        {this.addFavoritesText(numFavorites)}
+        {this.addFavoritesText(this.props.numFavorites)}
       </ScrollView>
     );
   }
@@ -39,12 +37,23 @@ var styles = StyleSheet.create({
   addFavoritesText: {
     color: 'darkgrey',
     textAlign: 'center'
-  }
+  },
+  favoritesTextContainer: {
+    alignSelf: 'center', 
+    margin: 20, 
+    alignItems: 'center'
+  },
+  noFavoritesTextContainer: {
+    flex: 1, 
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
 
 const mapStateToProps = (state) => {
   return {
-    favoritesState: state.favorites,
+    favStatus: state.favorites.favStatus,
+    numFavorites: state.favorites.numFavorites,
   }
 }
 
