@@ -1,7 +1,7 @@
 import {combineReducers} from 'redux';
 import {dummyData} from 'UgandaTrees/src/assets/data/dummy-data';
-import {ADD_FAVORITE, DELETE_FAVORITE, UPDATE_SEARCH, SET_PIC_URI, GET_LOCATION, GEOLOCATION_DENIED, RESET_LOCATION} from '../actions'
-
+import {ADD_FAVORITE, DELETE_FAVORITE, UPDATE_SEARCH} from '../actions'
+import {SET_PIC_URI, GET_LOCATION, GEOLOCATION_DENIED, RESET_LOCATION, SET_SPECIES} from '../actions'
 const initialSearchState = {
   searchTerm: '',
   searchResults: dummyData,
@@ -52,26 +52,32 @@ function favorites(state = initialState, action) {
   }
 }
 
-function location(state= {latitude: 100.000, longitude: 100.000}, action) {
+const initTagInfo = {
+  coords: {
+    latitude: 100.000000,
+    longitude: 100.000000,
+  },
+  species: '',
+  imageUri: ''
+}
+
+function tagInfo(state = initTagInfo, action) {
   switch(action.type) {
     case GET_LOCATION:
-      console.log('Latitude: ' + action.payload.latitude + ' ; Longitude: ' + action.payload.longitude);
-      return action.payload;
+      const coords = {
+        latitude: parseFloat(action.payload.latitude),
+        longitude: parseFloat(action.payload.longitude),
+      } 
+      return {...state, coords: coords}
     case GEOLOCATION_DENIED:
       alert('This app needs to use your location to tag a tree')
       return state;
     case RESET_LOCATION: 
-      return {latitude: '', longitude: ''}
-    default:
-      return state;
-  }
-}
-
-function camera(state = '', action) {
-  switch(action.type) {
+      return {...state, coords: {latitude: 100.000000, longitude: 100.000000}}
     case SET_PIC_URI:
-      const image_uri = action.payload;
-      return image_uri;
+      return {...state, imageUri: action.payload}
+    case SET_SPECIES:
+      return {...state, species: action.payload}
     default:
       return state;
   }
@@ -81,6 +87,5 @@ function camera(state = '', action) {
 export default combineReducers({
   search,
   favorites,
-  location,
-  camera,
+  tagInfo,
 });

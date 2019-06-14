@@ -54,7 +54,7 @@
 		</dict>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>This app uses your camera to capture a photo of the tree you&apos;re tagging</string>
+	<string>This app uses your camera to capture a photo of the tree you're tagging</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>AntDesign.ttf</string>

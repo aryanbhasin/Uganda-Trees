@@ -5,7 +5,7 @@ import FAIcon from 'react-native-vector-icons/FontAwesome'
 import FeatherIcon from 'react-native-vector-icons/Feather'
 import {connect} from 'react-redux';
 
-import {getLocation, setPicURI} from 'UgandaTrees/src/actions';
+import {setPicURI} from 'UgandaTrees/src/actions';
 import {CapturePicStyles as styles} from '../styles'
 
 class CapturePic extends Component {
@@ -24,7 +24,7 @@ class CapturePic extends Component {
   
   acceptedPic(imageUri) {
     navigator.geolocation.requestAuthorization();
-    this.props.getLocation();
+    
     this.props.navigation.navigate('AddTag', {imageUri: imageUri})
   }
   
@@ -81,12 +81,12 @@ class CapturePic extends Component {
 
 const mapDispatchToProps = {
   setPicURI: setPicURI,
-  getLocation: getLocation,
+
 }
 
 const mapStateToProps = (state) => {
   return {
-    imageUri: state.camera
+    imageUri: state.tagInfo.imageUri
   }
 }
 

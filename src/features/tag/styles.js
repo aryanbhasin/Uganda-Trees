@@ -41,17 +41,35 @@ export var CapturePicStyles = StyleSheet.create({
 });
 
 export var AddTagStyles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-
+  container_top: {
+    flex: 1.5,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginVertical: 30,
   },
   capturedImage: {
-    marginTop: 10
+    borderRadius: 10,
+    marginRight: 10
   },
-  speciesTextInput: {
-    width: 200,
-    marginTop: 10,
-    padding: 10,
+  container_buttons: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'flex-end',
+    marginBottom: 10,
+    
+  },
+  buttonView: {
+    marginHorizontal: 20,
+    marginBottom: 5
   }
 });
+
+export var TagSpeciesStyles = StyleSheet.create({
+  dropdownContainer: {
+    padding: 10,
+  },
+  dropdown: {
+    width: 180
+  }
+})

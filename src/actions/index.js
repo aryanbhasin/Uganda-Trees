@@ -8,6 +8,7 @@ export const GET_LOCATION = 'GET_LOCATION';
 export const GEOLOCATION_DENIED = 'GEOLOCATION_DENIED';
 export const SET_PIC_URI = 'SET_PIC_URI';
 export const RESET_LOCATION = 'RESET_LOCATION';
+export const SET_SPECIES = 'SET_SPECIES';
 
 // Action Creators
 export function updateSearch(text) {
@@ -43,6 +44,8 @@ export function deleteFavorite(treeName) {
   }
 }
 
+// **************************************** ACTION CREATORS FOR TAG INFO ****************************************
+
 // uses thunk
 export function getLocation() {
   return dispatch => {
@@ -77,6 +80,13 @@ export function setPicURI(image_uri) {
   return {
     type: SET_PIC_URI,
     payload: image_uri
+  }
+}
+
+export function setSpecies(species) {
+  return {
+    type: SET_SPECIES,
+    payload: species
   }
 }
 
