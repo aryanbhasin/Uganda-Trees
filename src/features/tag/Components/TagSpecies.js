@@ -17,7 +17,7 @@ class TagSpecies extends Component {
     return (
       <View style={styles.dropdownContainer}>
         <Dropdown containerStyle={styles.dropdown} label='Select Tree Species' data={dropdownList} onChangeText={(value) => this.props.setSpecies(value)} />        
-        <Text>{(this.props.species !== '') ? this.props.species : 'None chosen yet'}</Text>
+        
       </View>
     );
   }
