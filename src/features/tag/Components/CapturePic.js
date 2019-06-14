@@ -5,7 +5,7 @@ import FAIcon from 'react-native-vector-icons/FontAwesome'
 import FeatherIcon from 'react-native-vector-icons/Feather'
 import {connect} from 'react-redux';
 
-import {setPicURI} from 'UgandaTrees/src/actions';
+import {getLocation, setPicURI} from 'UgandaTrees/src/actions';
 import {CapturePicStyles as styles} from '../styles'
 
 class CapturePic extends Component {
@@ -22,6 +22,12 @@ class CapturePic extends Component {
     }
   }
   
+  acceptedPic(imageUri) {
+    navigator.geolocation.requestAuthorization();
+    this.props.getLocation();
+    this.props.navigation.navigate('AddTag', {imageUri: imageUri})
+  }
+  
   render(){
     
     const {imageUri} = this.props;
@@ -33,12 +39,12 @@ class CapturePic extends Component {
           style={styles.imgBG}>
           <View style={styles.crossIcon}>
             <TouchableOpacity onPress={() => this.props.setPicURI('')}>
-              <FAIcon name='close' color='white' size={36} />
+              <FeatherIcon name='x' color='white' size={42} />
             </TouchableOpacity>
           </View>
           <View style={styles.checkIcon}>
-            <TouchableOpacity onPress={() => this.props.navigation.navigate('AddTag', {imageUri: imageUri})}>
-              <FAIcon name='check' color='white' size={36} />
+            <TouchableOpacity onPress={() => this.acceptedPic(imageUri)}>
+              <FeatherIcon name='check' color='white' size={42} />
             </TouchableOpacity>
           </View>
           
@@ -62,7 +68,7 @@ class CapturePic extends Component {
             buttonNegative: 'Cancel',
           }}
         />
-        <View style={{flex: 0, flexDirection: 'row', alignSelf: 'center', justifyContent: 'center'}}>
+        <View style={styles.captureIconContainer}>
           <TouchableOpacity onPress={this.handleCapturePic} >
             <FeatherIcon name='camera' size={42} color='white' />
           </TouchableOpacity>
@@ -74,7 +80,8 @@ class CapturePic extends Component {
 }
 
 const mapDispatchToProps = {
-  setPicURI: setPicURI
+  setPicURI: setPicURI,
+  getLocation: getLocation,
 }
 
 const mapStateToProps = (state) => {

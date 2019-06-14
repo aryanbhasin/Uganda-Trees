@@ -5,7 +5,7 @@ export const UPDATE_SEARCH = 'UPDATE_SEARCH';
 export const ADD_FAVORITE = 'ADD_FAVORITE';
 export const DELETE_FAVORITE = 'DELETE_FAVORITE';
 export const GET_LOCATION = 'GET_LOCATION';
-export const GET_LOCATION_ERROR = 'GET_LOCATION_ERROR';
+export const GEOLOCATION_DENIED = 'GEOLOCATION_DENIED';
 export const SET_PIC_URI = 'SET_PIC_URI';
 export const RESET_LOCATION = 'RESET_LOCATION';
 
@@ -43,44 +43,27 @@ export function deleteFavorite(treeName) {
   }
 }
 
-
+// uses thunk
 export function getLocation() {
-  var coords, error = null;
-  
-  // do the location authorization request beforehand to prevent both camera and location requesting simultaneously
-  // navigator.geolocation.requestAuthorization();
-  
-  navigator.geolocation.getCurrentPosition (
-    (currPosition) => {coords = currPosition.coords},
-    (err) => {error = err},
-    {enableHighAccuracy: true}
-  );
-  
-                // dummy coordinates just for testing
-  var coordsDummy = {
-    latitude: 40.350043,
-    longitude: -74.659131
-  }
-  
-  console.log(coords);
-  
-  // if (error !== null) {
-  //   alert('Error: ' + error);
-  //   return {
-  //     type: GET_LOCATION_ERROR,
-  //     payload: {
-  //       latitude: coordsDummy.latitude,
-  //       longitude: coordsDummy.longitude
-  //     }
-  //   }
-  // }
-                // change coordsDummy to coords while testing on actual device
-  return {
-    type: GET_LOCATION,
-    payload: {
-      latitude: coordsDummy.latitude,
-      longitude: coordsDummy.longitude
-    }
+  return dispatch => {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        dispatch({
+          type: 'GET_LOCATION',
+          payload: {
+            latitude: position.coords.latitude.toFixed(6),
+            longitude: position.coords.longitude.toFixed(6)
+          }
+        });
+      },
+      (error) => {
+        if (error.code === 1) {
+          dispatch({
+            type: 'GEOLOCATION_DENIED',
+          });
+        }
+      }
+    );
   }
 }
 

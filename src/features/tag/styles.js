@@ -11,6 +11,12 @@ export var CapturePicStyles = StyleSheet.create({
     justifyContent: 'flex-end',
     alignItems: 'center',
   },
+  captureIconContainer: {
+    position: 'absolute',
+    bottom: 0,
+    alignSelf: 'center', 
+    justifyContent: 'center'
+  },
   capture: {
     backgroundColor: '#fff',
     padding: 15,
@@ -36,17 +42,16 @@ export var CapturePicStyles = StyleSheet.create({
 
 export var AddTagStyles = StyleSheet.create({
   container: {
-    flex: 1, 
-    justifyContent: 'center', 
-    alignItems: 'center'
+    flex: 1,
+    alignItems: 'center',
+
   },
   capturedImage: {
-    borderWidth: 2, 
-    borderColor: '#ff8f00', 
-    marginTop: 60
+    marginTop: 10
   },
   speciesTextInput: {
-    marginTop: 20,
-    padding: 10
+    width: 200,
+    marginTop: 10,
+    padding: 10,
   }
 });

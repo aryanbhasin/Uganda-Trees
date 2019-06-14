@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux';
 import {dummyData} from 'UgandaTrees/src/assets/data/dummy-data';
-import {ADD_FAVORITE, DELETE_FAVORITE, UPDATE_SEARCH, SET_PIC_URI, GET_LOCATION, GET_LOCATION_ERROR, RESET_LOCATION} from '../actions'
+import {ADD_FAVORITE, DELETE_FAVORITE, UPDATE_SEARCH, SET_PIC_URI, GET_LOCATION, GEOLOCATION_DENIED, RESET_LOCATION} from '../actions'
 
 const initialSearchState = {
   searchTerm: '',
@@ -52,18 +52,18 @@ function favorites(state = initialState, action) {
   }
 }
 
-function location(state= {latitude: 40.350043, longitude: -74.659131}, action) {
+function location(state= {latitude: 100.000, longitude: 100.000}, action) {
   switch(action.type) {
     case GET_LOCATION:
-      console.log(action.payload)
-      return {latitude: action.payload.latitude, longitude: action.payload.longitude};
-    // case GET_LOCATION_ERROR:
-    //   console.log(action.payload)
-    //   return state;
+      console.log('Latitude: ' + action.payload.latitude + ' ; Longitude: ' + action.payload.longitude);
+      return action.payload;
+    case GEOLOCATION_DENIED:
+      alert('This app needs to use your location to tag a tree')
+      return state;
     case RESET_LOCATION: 
       return {latitude: '', longitude: ''}
     default:
-      return state
+      return state;
   }
 }
 
