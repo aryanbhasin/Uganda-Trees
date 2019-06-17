@@ -73,3 +73,9 @@ export var TagSpeciesStyles = StyleSheet.create({
     width: 180
   }
 })
+
+export var TagMapViewStyles = StyleSheet.create({
+  map: {
+    ...StyleSheet.absoluteFill
+  }
+})

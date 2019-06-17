@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import MapView, {Marker, Callout} from 'react-native-maps';
 import {connect} from 'react-redux';
-import FAIcon from 'react-native-vector-icons/FontAwesome5'
+import FAIcon from 'react-native-vector-icons/FontAwesome5';
+import {TagMapViewStyles as styles} from '../styles'
 
 const LAT_DEFAULT = 37.78825; // for testing on simulator
 const LON_DEFAULT = -122.4324;
@@ -16,22 +17,22 @@ class TagMapView extends Component {
     var {latitude, longitude, species} = this.props;
     
     let region = {
-      latitude: latitude,
-      longitude: longitude,
+      latitude: LAT_DEFAULT,
+      longitude: LON_DEFAULT,
       latitudeDelta: LAT_DELTA,
       longitudeDelta: LON_DELTA,
     }
     
     
     return (
-      <MapView initialRegion={region} >
-        <Marker coordinate={{latitude: latitude, longitude: longitude}}>
+      <MapView initialRegion={region} style={styles.map} >
+        <Marker coordinate={{latitude: LAT_DEFAULT, longitude: LON_DEFAULT}}>
           <View>
             <FAIcon name="tree" color='green' size={22} />
           </View>
-          <Callout style={{width: 150}}>
-            <View>
-              <Text style={{fontWeight: 'bold', fontSize: 16}}>{(species !== '') ? species + ' Tree' : 'Choose Species'}</Text>
+          <Callout style={{flex: 1, justifyContent: 'center', alignItems: 'center', width: 100}}>
+            <View > 
+              <Text style={{fontWeight: 'bold', fontSize: 16, textAlign: 'center'}}>{(species !== '') ? species + ' Tree' : 'Choose Species'}</Text>
             </View>
           </Callout>
         </Marker>
