@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {createStackNavigator, createAppContainer} from 'react-navigation';
 
 import Tag from '../features/tag/'
-import AddTag from '../features/tag/Components/AddTag';
+import AddTag from '../features/tag/components/AddTag';
 
 export default createStackNavigator(
   {

@@ -1,23 +1,74 @@
 import React, {Component} from 'react';
 import {Text, View, Image, ScrollView} from 'react-native';
-
+import {Button} from 'react-native-elements';
+// import {TabView} from 'react-native-tab-view';
 
 import {styles} from './styles'
 import {dummyData} from 'UgandaTrees/src/assets/data/dummy-data';
+import TreeModal from './components/modal';
+import SCREEN_WIDTH from 'UgandaTrees/src/styles/globalStyles'
+
+import {firebaseApp} from 'UgandaTrees/App'
 
 export default class TreeInfo extends Component {
   
-  render() {
+  constructor(props) {
+    super(props);
     
     const treeName = this.props.navigation.getParam('treeName', 'Coffee');
-    const treeData = dummyData.find((tree) => (tree.name === treeName));
+    this.treeData = dummyData.find((tree) => (tree.name === treeName));
+
+    this.state = {
+      modalVisible: false,
+      treeName: 'mahogany',
+      tabview: {
+        index: 0,
+        routes: [
+          {key: 'basicinfo', title: 'Information'},
+          {key: 'stats', title: 'Statistics'}
+        ]
+      }
+    }
+  }
+  
+  
+  
+  toggleModal() {
+    this.setState({modalVisible: !this.state.modalVisible})
+  }
+  
+  // handleRenderScene(route) {
+  //   switch (route.key) {
+  //     case 'basicinfo':
+  //       return <BasicInfo text={this.treeData.basic_info}/>;
+  //     case 'stats':
+  //       return <Stats stats={this.treeData.stats}/>;
+  //     default:
+  //       return null;
+  //   }
+  // }
+  // 
+  // renderTabBar(props) {
+  //   return (
+  //     <TabBar {...props} style={{backgroundColor: 'pink'}}/>
+  //   );
+  // }
+  
+  
+  render() {
     
     return (
       <ScrollView>
-        <Frontal name={treeData.name} image_src={treeData.image_src}/>
+        <Frontal name={this.treeData.name} image_src={this.treeData.image_src}/>
         <View style={{paddingHorizontal: 20}}>
-          <BasicInfo text={treeData.basic_info}/>
-          <Stats stats={treeData.stats} /> 
+          <BasicInfo text={this.treeData.basic_info}/>
+          <Stats stats={this.treeData.stats} /> 
+        </View>
+        <View>
+        </View>
+        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+          <Button containerStyle={{width: 200, margin: 15}} title="Show nearby trees" raised type="outline" onPress={() => this.toggleModal()}/>
+          <TreeModal isVisible={this.state.modalVisible} toggleModal={() => this.toggleModal()}/>
         </View>
       </ScrollView>
     );

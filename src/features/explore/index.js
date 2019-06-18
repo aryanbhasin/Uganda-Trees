@@ -19,6 +19,7 @@ export default class Explore extends Component {
 
 var styles = StyleSheet.create({
   container: {
+    flex: 1,
     marginTop: 5
   }
 });
