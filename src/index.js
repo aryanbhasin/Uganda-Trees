@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {createBottomTabNavigator, createAppContainer} from 'react-navigation';
 import { useScreens } from 'react-native-screens';
+import FlashMessage from 'react-native-flash-message';
 
 import ExploreScreen from './navigators/ExploreScreen';
 import FavoritesScreen from './navigators/FavoritesScreen';
@@ -47,6 +48,7 @@ class EntryPoint extends Component {
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <AppContainer />
+          <FlashMessage position="top" />
         </PersistGate>
       </Provider>
       

@@ -5,7 +5,7 @@ import Tab from './components/tab/';
 
 import {styles} from './styles'
 import {dummyData} from 'UgandaTrees/src/assets/data/dummy-data';
-import TreeModal from './components/modal';
+
 import SCREEN_WIDTH from 'UgandaTrees/src/styles/globalStyles'
 
 import {firebaseApp} from 'UgandaTrees/App'
@@ -19,16 +19,7 @@ export default class TreeInfo extends Component {
     this.treeData = dummyData.find((tree) => (tree.name === treeName));
 
   }
-  
-  state = {
-    modalVisible: false,
-  };
 
-  toggleModal() {
-    this.setState({modalVisible: !this.state.modalVisible})
-  }
-
-  
   render() {
     return (
       <View style={{flex: 1}}>
@@ -37,10 +28,6 @@ export default class TreeInfo extends Component {
         </View>
         <View style={{flex: 1}}>
           <Tab treeData={this.treeData} />
-        </View>
-        <View style={{flex: 0.2, justifyContent: 'flex-end', alignItems: 'center'}}>
-          <Button containerStyle={{width: 200, margin: 15}} title="Find closest tree" raised type="outline" onPress={() => this.toggleModal()}/>
-          <TreeModal isVisible={this.state.modalVisible} toggleModal={() => this.toggleModal()}/>
         </View>
       </View>
     );

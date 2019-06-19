@@ -3,6 +3,8 @@ import {StyleSheet, Text, View, TouchableOpacity, KeyboardAvoidingView} from 're
 import { Button } from 'react-native-elements';
 import Image from 'react-native-scalable-image';
 import {connect} from 'react-redux';
+import Spinner from 'UgandaTrees/src/components/spinner'
+import {showMessage, hideMessage} from 'react-native-flash-message';
 
 import TagSpecies from './TagSpecies';
 import TagMapView from './TagMapView';
@@ -20,17 +22,37 @@ class AddTag extends Component {
     this.props.getLocation();
   }
   
+  state = {
+    uploadingTag: false
+  }
+  
   submitTag(species, coords, imageUri) {
     if (species === '') {
       return alert('Please choose a tree species');
     }
+    this.setState({uploadingTag: true})
+    
     var tagListRef = firebaseApp.database().ref('tags/' + species.toLowerCase());
     var newTagRef = tagListRef.push();
     newTagRef.set({
-      key: uuidv1(),
-      imageUri: imageUri,
-      coords: coords
-    });
+        key: uuidv1(),
+        imageUri: imageUri,
+        coords: coords
+      }, (error) => {
+        if (error) {alert('Error submitting tag. Please Try again')}
+        else {
+          showMessage({
+            message: "Tag uploaded",
+            type: "success",
+            icon: "success",
+            duration: 1800
+          });
+          setTimeout(() => {this.props.navigation.navigate('CapturePic')}, 1800);
+          this.setState({uploadingTag: false})
+        }
+      }
+      
+    );
   }
   
   render() {
@@ -38,6 +60,7 @@ class AddTag extends Component {
     const {species, coords} = this.props;
     
     return (
+      
       <View style={{flex: 1}}>
         <View style={styles.container_top}>
           <View style={{padding: 10}}>
@@ -56,6 +79,11 @@ class AddTag extends Component {
             <Button title="Submit Tag" onPress={() => this.submitTag(species, coords, imageUri)}/>
           </View>
         </View>
+        {this.state.uploadingTag && (
+          <View style={{...StyleSheet.absoluteFill}}>
+            <Spinner />
+          </View>
+        )}
       </View>
     );
   }
