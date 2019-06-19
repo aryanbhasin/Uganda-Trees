@@ -3,14 +3,16 @@ import {StyleSheet, Text, View, TouchableOpacity, KeyboardAvoidingView} from 're
 import { Button } from 'react-native-elements';
 import Image from 'react-native-scalable-image';
 import {connect} from 'react-redux';
-import {SCREEN_WIDTH} from 'UgandaTrees/src/styles/globalStyles.js';
+
 import TagSpecies from './TagSpecies';
 import TagMapView from './TagMapView';
 
-
+import {firebaseApp} from 'UgandaTrees/App'
 import {getLocation, resetLocation} from 'UgandaTrees/src/actions';
 
 import {AddTagStyles as styles} from '../styles';
+
+const uuidv1 = require('uuid/v1');
 
 class AddTag extends Component {
 
@@ -18,18 +20,28 @@ class AddTag extends Component {
     this.props.getLocation();
   }
   
-  submitTag() {
-    
+  submitTag(species, coords, imageUri) {
+    if (species === '') {
+      return alert('Please choose a tree species');
+    }
+    var tagListRef = firebaseApp.database().ref('tags/' + species.toLowerCase());
+    var newTagRef = tagListRef.push();
+    newTagRef.set({
+      key: uuidv1(),
+      imageUri: imageUri,
+      coords: coords
+    });
   }
   
   render() {
-    const image_uri = this.props.navigation.getParam('imageUri');
+    const imageUri = this.props.navigation.getParam('imageUri');
+    const {species, coords} = this.props;
     
     return (
       <View style={{flex: 1}}>
         <View style={styles.container_top}>
           <View style={{padding: 10}}>
-            <Image source={{uri: image_uri}} width={100} style={styles.capturedImage}/>
+            <Image source={{uri: imageUri}} width={100} style={styles.capturedImage}/>
           </View>
           <TagSpecies />
         </View>
@@ -41,7 +53,7 @@ class AddTag extends Component {
             <Button title="Get Location" onPress={() => this.props.getLocation()}/>
           </View>
           <View style={styles.buttonView}>
-            <Button title="Submit Tag" onPress={() => this.submitTag()}/>
+            <Button title="Submit Tag" onPress={() => this.submitTag(species, coords, imageUri)}/>
           </View>
         </View>
       </View>
@@ -51,8 +63,8 @@ class AddTag extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    longitude: state.tagInfo.coords.longitude,
-    latitude: state.tagInfo.coords.latitude,
+    coords: state.newTagInfo.coords,
+    species: state.newTagInfo.species,
   }
 }
 

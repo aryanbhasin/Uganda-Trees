@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import {Text, View, Image, ScrollView} from 'react-native';
+import {Text, View, Image, ScrollView, Dimensions} from 'react-native';
 import {Button} from 'react-native-elements';
-// import {TabView} from 'react-native-tab-view';
+import Tab from './components/tab/';
 
 import {styles} from './styles'
 import {dummyData} from 'UgandaTrees/src/assets/data/dummy-data';
@@ -18,68 +18,38 @@ export default class TreeInfo extends Component {
     const treeName = this.props.navigation.getParam('treeName', 'Coffee');
     this.treeData = dummyData.find((tree) => (tree.name === treeName));
 
-    this.state = {
-      modalVisible: false,
-      treeName: 'mahogany',
-      tabview: {
-        index: 0,
-        routes: [
-          {key: 'basicinfo', title: 'Information'},
-          {key: 'stats', title: 'Statistics'}
-        ]
-      }
-    }
   }
   
-  
-  
+  state = {
+    modalVisible: false,
+  };
+
   toggleModal() {
     this.setState({modalVisible: !this.state.modalVisible})
   }
-  
-  // handleRenderScene(route) {
-  //   switch (route.key) {
-  //     case 'basicinfo':
-  //       return <BasicInfo text={this.treeData.basic_info}/>;
-  //     case 'stats':
-  //       return <Stats stats={this.treeData.stats}/>;
-  //     default:
-  //       return null;
-  //   }
-  // }
-  // 
-  // renderTabBar(props) {
-  //   return (
-  //     <TabBar {...props} style={{backgroundColor: 'pink'}}/>
-  //   );
-  // }
-  
+
   
   render() {
-    
     return (
-      <ScrollView>
-        <Frontal name={this.treeData.name} image_src={this.treeData.image_src}/>
-        <View style={{paddingHorizontal: 20}}>
-          <BasicInfo text={this.treeData.basic_info}/>
-          <Stats stats={this.treeData.stats} /> 
-        </View>
+      <View style={{flex: 1}}>
         <View>
+          <Frontal name={this.treeData.name} image_src={this.treeData.image_src}/>
         </View>
-        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-          <Button containerStyle={{width: 200, margin: 15}} title="Show nearby trees" raised type="outline" onPress={() => this.toggleModal()}/>
+        <View style={{flex: 1}}>
+          <Tab data={this.treeData} />
+        </View>
+        <View style={{flex: 0.2, justifyContent: 'flex-end', alignItems: 'center'}}>
+          <Button containerStyle={{width: 200, margin: 15}} title="Find closest tree" raised type="outline" onPress={() => this.toggleModal()}/>
           <TreeModal isVisible={this.state.modalVisible} toggleModal={() => this.toggleModal()}/>
         </View>
-      </ScrollView>
+      </View>
     );
   }
 }
 
 class Frontal extends Component {
   render() {
-    
     const {name, image_src} = this.props;
-    
     return (
       <View>
         <View>
@@ -94,37 +64,7 @@ class Frontal extends Component {
   }
 }
 
-class BasicInfo extends Component {
-  render() {
-    const {text} = this.props;
-    return (
-      <View style={styles.bodyContainer}>
-        <Text style={styles.bodyText}>{text}</Text>
-      </View>
-    );
-  }
-}
 
-class Stats extends Component {
-  
-  renderRow(object, key, index) {
-    return (
-      <View key={index} style={styles.rowContainerStyle}>
-        <Text style={styles.rowText}>{key}</Text>
-        <Text style={styles.rowText}>{object[key]}</Text>
-      </View>
-    );
-  }
-  
-  render() {
-    const {stats} = this.props;
-    return (
-      <View>
-        {Object.keys(stats).map((key, index) => this.renderRow(stats, key, index))}
-      </View>
-    );
-  }
-}
 
 
 

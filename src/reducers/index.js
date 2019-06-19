@@ -7,7 +7,8 @@ const initialSearchState = {
   searchResults: dummyData,
 }
 
-// Reducers
+// **************************************** REDUCER FOR SEARCH ****************************************
+
 function search(state = initialSearchState, action) {
   switch (action.type) {
     case UPDATE_SEARCH:
@@ -16,6 +17,8 @@ function search(state = initialSearchState, action) {
       return state;
   }
 }
+
+// **************************************** REDUCER FOR FAVORITES ****************************************
 
 var initFavStatus = [];
 // initializes initialFavStatus by pushing each tree with isFavorited set to false
@@ -52,6 +55,8 @@ function favorites(state = initialState, action) {
   }
 }
 
+// **************************************** REDUCER FOR NEW TAG INFO ****************************************
+
 const initTagInfo = {
   coords: {
     latitude: 100.000000,
@@ -61,7 +66,7 @@ const initTagInfo = {
   imageUri: ''
 }
 
-function tagInfo(state = initTagInfo, action) {
+function newTagInfo(state = initTagInfo, action) {
   switch(action.type) {
     case GET_LOCATION:
       const coords = {
@@ -87,5 +92,5 @@ function tagInfo(state = initTagInfo, action) {
 export default combineReducers({
   search,
   favorites,
-  tagInfo,
+  newTagInfo,
 });

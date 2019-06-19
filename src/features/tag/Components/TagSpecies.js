@@ -25,7 +25,7 @@ class TagSpecies extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    species: state.tagInfo.species
+    species: state.newTagInfo.species
   }
 }
 

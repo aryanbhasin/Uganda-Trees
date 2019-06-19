@@ -8,7 +8,7 @@ export const dummyData = [
         Age: "10 yrs",
         Type: "Coffee Tree",
         Soil: "Moderate",
-        Locality: "Uganda",
+        Locality: "Uganda"
       }
     },
     {
@@ -20,7 +20,7 @@ export const dummyData = [
         Age: "8 yrs",
         Type: "Maple Tree",
         Soil: "Wet",
-        Locality: "South Africa",
+        Locality: "South Africa"
       }
     },
     {
@@ -32,7 +32,7 @@ export const dummyData = [
         Age: "12 yrs",
         Type: "Mahogany Tree",
         Soil: "Moderate",
-        Locality: "Nigeria",
+        Locality: "Nigeria"
       }
     }
 ]

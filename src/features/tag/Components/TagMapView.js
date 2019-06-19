@@ -43,9 +43,9 @@ class TagMapView extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    latitude: state.tagInfo.coords.latitude,
-    longitude: state.tagInfo.coords.longitude,
-    species: state.tagInfo.species
+    latitude: state.newTagInfo.coords.latitude,
+    longitude: state.newTagInfo.coords.longitude,
+    species: state.newTagInfo.species
   }
 }
 

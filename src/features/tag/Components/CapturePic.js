@@ -86,7 +86,7 @@ const mapDispatchToProps = {
 
 const mapStateToProps = (state) => {
   return {
-    imageUri: state.tagInfo.imageUri
+    imageUri: state.newTagInfo.imageUri
   }
 }
 

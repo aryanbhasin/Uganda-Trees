@@ -16,13 +16,15 @@ export var styles = StyleSheet.create({
     color: 'white',
     fontSize: 44,
     fontWeight: '700',
+    paddingBottom: 4
   },
   bodyContainer: {
-    marginVertical: 15
+    marginVertical: 15,
   },
   bodyText: {
     textAlign: 'justify',
     fontSize: 16,
+    fontFamily: 'OpenSans'
   },
 
   rowContainerStyle: {
@@ -32,6 +34,7 @@ export var styles = StyleSheet.create({
     alignItems: 'center',
     borderBottomWidth: 1,
     borderColor: '#ddd',
+    padding: 5
   },
   rowText: {
     fontWeight: '500',
