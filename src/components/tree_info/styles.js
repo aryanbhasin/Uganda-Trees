@@ -40,5 +40,5 @@ export var styles = StyleSheet.create({
     fontWeight: '500',
     fontSize: 17,
     paddingVertical: 8,
-  }
+  },
 });

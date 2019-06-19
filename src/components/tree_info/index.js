@@ -36,7 +36,7 @@ export default class TreeInfo extends Component {
           <Frontal name={this.treeData.name} image_src={this.treeData.image_src}/>
         </View>
         <View style={{flex: 1}}>
-          <Tab data={this.treeData} />
+          <Tab treeData={this.treeData} />
         </View>
         <View style={{flex: 0.2, justifyContent: 'flex-end', alignItems: 'center'}}>
           <Button containerStyle={{width: 200, margin: 15}} title="Find closest tree" raised type="outline" onPress={() => this.toggleModal()}/>
