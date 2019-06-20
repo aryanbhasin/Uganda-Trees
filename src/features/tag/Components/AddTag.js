@@ -32,45 +32,27 @@ class AddTag extends Component {
     uploadingTag: false
   }
   
-  // need to clean this code, improve readibility
-  uploadTag(species, coords, imageUri, imageKey) {
+  uploadTagInfo(species, coords, tagKey, downloadURL) {
     var tagListRef = firebaseApp.database().ref('tags/' + species.toLowerCase());
     var newTagRef = tagListRef.push();
-    
-    var imageRef = firebaseApp.storage().ref('images/' + species.toLowerCase() + `/${imageKey}.jpg`);
-    const uploadUri = Platform.OS === 'ios' ? imageUri.replace('file://', '') : imageUri;
-    
-    const imageFile = RNFetchBlob.wrap(uploadUri);      
-    Blob.build(imageFile, { type: 'image/jpg;' }).then((imageBlob) => {
-      var uploadTask = imageRef.put(imageBlob, { contentType: 'image/jpg' });
-      uploadTask.on('state_changed', function(snapshot){
-        var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        console.log('Upload is ' + progress + '% done'); // Task progress
-      }, (error) => console.READ_EXTERNAL_STORAGE(error)
-      , () => {
-        uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
-          newTagRef.set({
-              key: imageKey,
-              imageUri: downloadURL,
-              coords: coords
-            }, (error) => {
-              if (error) {alert('Error submitting tag. Please Try again')}
-              else {
-                showMessage({
-                  message: "Tag uploaded",
-                  type: "success",
-                  icon: "success",
-                  duration: 1800
-                });
-                setTimeout(() => {this.props.navigation.navigate('CapturePic')}, 1800);
-                this.setState({uploadingTag: false})
-              }
-            }
-          );
-        } );
-      });
-    })
-
+    newTagRef.set({
+        key: tagKey,
+        imageUri: downloadURL,
+        coords: coords
+      }, (error) => {
+        if (error) {alert('Error submitting tag. Please try again')}
+        else {
+          showMessage({
+            message: "Tag uploaded",
+            type: "success",
+            icon: "success",
+            duration: 1800
+          });
+          setTimeout(() => {this.props.navigation.navigate('CapturePic')}, 1800);
+          this.setState({uploadingTag: false})
+        }
+      }
+    );
   }
   
   submitTag(species, coords, imageUri) {
@@ -78,10 +60,24 @@ class AddTag extends Component {
       return alert('Please choose a tree species');
     }
     this.setState({uploadingTag: true})
-    
-    imageKey = uuidv1();
 
-    this.uploadTag(species, coords, imageUri, imageKey)
+    tagKey = uuidv1();
+    var imageRef = firebaseApp.storage().ref('images/' + species.toLowerCase() + `/${tagKey}.jpg`);
+    const uploadUri = Platform.OS === 'ios' ? imageUri.replace('file://', '') : imageUri;
+    
+    // Upload Image on Storage
+    const imageFile = RNFetchBlob.wrap(uploadUri);      
+    Blob.build(imageFile, { type: 'image/jpg;' }).then((imageBlob) => {
+      var uploadTask = imageRef.put(imageBlob, { contentType: 'image/jpg' });
+      uploadTask.on('state_changed', function(snapshot){
+        var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        console.log('Upload is ' + progress + '% done'); // Task progress
+      }, (error) => console.log(error),
+      () => {
+        // Extract downloadURL and then upload TagInfo on Realtime DB
+        uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {this.uploadTagInfo(species, coords, tagKey, downloadURL)});
+      });
+    })
     
   }
   
