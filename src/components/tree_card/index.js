@@ -14,11 +14,11 @@ class TreeCard extends Component {
     isFavorited: false
   }
   
-  handleFavorite(treeName, isFavorited) {
+  toggleFavorite(treeData, isFavorited) {
     if (isFavorited) {
-      this.props.deleteFavorite(treeName);
+      this.props.deleteFavorite(treeData);
     } else {
-      this.props.addFavorite(treeName);
+      this.props.addFavorite(treeData);
     }
   }
   
@@ -27,10 +27,9 @@ class TreeCard extends Component {
     
     StatusBar.setBarStyle('dark-content', true);
     
-    const {treeData} = this.props;
-    const name = !!treeData.Names.English_Name ? treeData.Names.English_Name : treeData.Names.Ugandan_Name;
+    const {treeData, isFavorited} = this.props;
+    const name = treeData.Names.Primary_Name;
     image_src = treeData.ImageUri;
-    isFavorited = false;
     
     return (
  
@@ -41,7 +40,7 @@ class TreeCard extends Component {
             </View>
             <View style={styles.cardRow}>
               <Text style={styles.cardTitle}>{name}</Text>
-              <TouchableOpacity style={{paddingRight: 5}} onPress={() => {this.handleFavorite(name, isFavorited)}}>
+              <TouchableOpacity style={{paddingRight: 5}} onPress={() => {this.toggleFavorite(treeData, isFavorited)}}>
                 <Icon style={styles.favoriteIcon} name={isFavorited ? 'heart' : 'heart-outlined'} color='tomato' size={26}/>
               </TouchableOpacity>
             </View>

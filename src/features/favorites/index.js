@@ -18,10 +18,8 @@ class Favorites extends Component {
   render(){
     return (
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={this.props.numFavorites === 0 && styles.noFavoritesTextContainer}>
-        {this.props.favStatus.map((tree, index) => {
-          if (tree.isFavorited) {
-            return (<TreeCard key={index} name={tree.name} image_src={tree.image_src} isFavorited={true} navigation={this.props.navigation}/>)  
-          }
+        {this.props.favList.map((treeData, index) => {
+            return (<TreeCard key={index} treeData={treeData} isFavorited={true} navigation={this.props.navigation}/>) 
         })}
         {this.addFavoritesText(this.props.numFavorites)}
       </ScrollView>
@@ -52,7 +50,7 @@ var styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
   return {
-    favStatus: state.favorites.favStatus,
+    favList: state.favorites.favList,
     numFavorites: state.favorites.numFavorites,
   }
 }

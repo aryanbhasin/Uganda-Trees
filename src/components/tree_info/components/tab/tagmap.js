@@ -17,6 +17,10 @@ const LON_DELTA = 0.0522; // to render a square MapView
 
 class TagMap extends Component {
   
+  componentWillUnmount() {
+    navigator.geolocation.stopObserving();
+  }
+  
   constructor(props) {
     super(props);
     this.props.getLocation();
@@ -40,8 +44,6 @@ class TagMap extends Component {
        });
       this.setState({markers: markers, markersLoading: false});
     });
-
-    
   }
   
   findNearestTree() {

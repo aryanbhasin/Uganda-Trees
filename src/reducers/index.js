@@ -4,7 +4,6 @@ import {SET_PIC_URI, GET_LOCATION, GEOLOCATION_DENIED, RESET_LOCATION, SET_SPECI
 
 
 // **************************************** REDUCER FOR SEARCH ****************************************
-import {dummyData} from 'UgandaTrees/src/assets/data/dummy-data';
 const initialSearchState = {
   searchTerm: '',
   searchResults: null,
@@ -25,37 +24,23 @@ function search(state = initialSearchState, action) {
 }
 
 // **************************************** REDUCER FOR FAVORITES ****************************************
-
-var initFavStatus = [];
-// initializes initialFavStatus by pushing each tree with isFavorited set to false
-dummyData.forEach(tree => initFavStatus.push({name: tree.name, isFavorited: false, image_src: tree.image_src}))
-
 const initialState = {
-  favStatus: initFavStatus,
+  favList: [],
   numFavorites: 0,
 };
 
 function favorites(state = initialState, action) {
-  var newFavStatus;
+  var newfavList;
   switch(action.type) {
     case ADD_FAVORITE:
-      newFavStatus = state.favStatus.map((tree) => {
-        var returnVal = {...tree};
-        if (tree.name === action.payload) {
-          returnVal.isFavorited = true;
-        }
-        return returnVal
-      });
-      return {...state, numFavorites: state.numFavorites + 1, favStatus: newFavStatus};
+      newfavList = [...state.favList, action.payload]
+      return {...state, numFavorites: state.numFavorites + 1, favList: newfavList};
     case DELETE_FAVORITE:
-      newFavStatus = state.favStatus.map((tree) => {
-        var returnVal = {...tree};
-        if (tree.name === action.payload) {
-          returnVal.isFavorited = false;
-        }
-        return returnVal
+      newfavList = state.favList.filter((tree) => {
+        // payload for DELETE_FAVORITE is just the tree name
+        return (tree.Names.Primary_Name !== action.payload)
       });
-      return {...state, numFavorites: state.numFavorites - 1, favStatus: newFavStatus};;
+      return {...state, numFavorites: state.numFavorites - 1, favList: newfavList};;
     default:
       return state;
   }

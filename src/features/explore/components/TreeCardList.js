@@ -14,26 +14,22 @@ class TreeCardList extends Component {
     this.props.getSearchData();
   }
   
-  render() {
-                    
+  render() {               
     if (this.props.dataLoading) {
       return (
         <Spinner />
       );
     }
-    
+    console.log(this.props.favList);
     return (
       <ScrollView style={styles.cardListScroll} keyboardShouldPersistTaps='never' showsVerticalScrollIndicator={false}>
-        {this.props.searchResults.map((tree, index) => {
-          const name = !!tree.Names.English_Name ? tree.Names.English_Name : tree.Names.Ugandan_Name;
+        {this.props.searchResults.map((treeData, index) => {
+          const currTree_name = treeData.Names.Primary_Name
           
-          // goes through favorites state to find isFavorited status of
-          // var currTree = this.props.favStatus.find((item) => {
-          //   return (item.name === name);
-          // }); 
-          // const isTreeFavorited = currTree.isFavorited;
+          // checks if tree exists in favList using .some()
+          const isTreeFavorited = this.props.favList.some(favTree => (favTree.Names.Primary_Name === currTree_name))
           
-          return (<TreeCard key={index} treeData={tree} isFavorited={false} navigation={this.props.navigation}/>)
+          return (<TreeCard key={index} treeData={treeData} isFavorited={isTreeFavorited} navigation={this.props.navigation}/>)
         })}
       </ScrollView>
     );
@@ -50,7 +46,7 @@ const mapStateToProps = (state) => {
   return {
     searchResults: state.search.searchResults,
     dataLoading: state.search.isLoading,
-    favStatus: state.favorites.favStatus,
+    favList: state.favorites.favList,
   }
 };
 

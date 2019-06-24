@@ -13,6 +13,7 @@ const persistConfig = {
 }
 
 const pReducer = persistReducer(persistConfig, rootReducer)
-
+                // change to pReducer
 export const store = createStore(pReducer, applyMiddleware(thunk));
+
 export const persistor = persistStore(store);

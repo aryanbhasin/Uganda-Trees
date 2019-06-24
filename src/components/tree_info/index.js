@@ -5,7 +5,6 @@ import Tab from './components/tab/';
 import {CachedImage} from 'react-native-cached-image';
 
 import {styles} from './styles'
-import {dummyData} from 'UgandaTrees/src/assets/data/dummy-data';
 
 import SCREEN_WIDTH from 'UgandaTrees/src/styles/globalStyles'
 
@@ -17,7 +16,7 @@ export default class TreeInfo extends Component {
     super(props);
     
     this.treeData = this.props.navigation.getParam('treeData');
-    this.treeName = !!this.treeData.Names.English_Name ? this.treeData.Names.English_Name : this.treeData.Names.Ugandan_Name;
+    this.treeName = this.treeData.Names.Primary_Name
 
   }
 

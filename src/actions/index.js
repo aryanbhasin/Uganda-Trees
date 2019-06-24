@@ -38,7 +38,7 @@ export function updateSearch(text, dummyData) {
     ? searchData = dummyData
     : searchData = dummyData.filter((card) => {
         const searchTerm = text.toUpperCase();
-        const name = !!card.Names.English_Name ? card.Names.English_Name : card.Names.Ugandan_Name;
+        const name = card.Names.Primary_Name
         return name.toUpperCase().indexOf(searchTerm) > -1;
       })
   
@@ -53,17 +53,17 @@ export function updateSearch(text, dummyData) {
 
 // **************************************** ACTION CREATORS FOR FAVORITES ****************************************
 
-export function addFavorite(treeName) {
+export function addFavorite(treeData) {
   return {
     type: ADD_FAVORITE,
-    payload: treeName,
+    payload: treeData,
   }
 }
 
-export function deleteFavorite(treeName) {
+export function deleteFavorite(treeData) {
   return {
     type: DELETE_FAVORITE,
-    payload: treeName,
+    payload: treeData.Names.Primary_Name,
   }
 }
 
