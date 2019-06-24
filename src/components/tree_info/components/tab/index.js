@@ -44,23 +44,23 @@ export default class Tab extends Component {
   
   render() {
     
-    const {treeData} = this.props;
+    const {treeData, treeName} = this.props;
     
     const InfoRoute = () => (
       <View style={{flex: 1, marginHorizontal: 20}}>
-        <BasicInfo text={treeData.basic_info}/>
+        <BasicInfo treeData={treeData}/>
       </View>
     );
 
     const StatsRoute = () => (
       <View style={{flex: 1, marginHorizontal: 20}}>
-        <Stats stats={treeData.stats}/>
+        <Stats parts={treeData.Parts}/>
       </View>
     );
     
     const TagMapRoute = () => (
       <View style={{flex: 1}}>
-        <TagMap treeName={treeData.name}/>
+        <TagMap treeName={treeName}/>
       </View>
     );
 
@@ -76,6 +76,7 @@ export default class Tab extends Component {
         initialLayout={{ width: SCREEN_WIDTH}}
         renderTabBar={(props) => this.renderTabBar(props)}
         lazy={true}
+        swipeEnabled={false}
         renderLazyPlaceholder={() => (
           <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
             <Spinner />

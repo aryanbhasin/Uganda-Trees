@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {View, Text, StyleSheet, Image, TouchableOpacity, StatusBar} from 'react-native';
 import Icon from 'react-native-vector-icons/Entypo'
 import {connect} from 'react-redux';
+import {CachedImage} from 'react-native-cached-image';
 
 import {addFavorite, deleteFavorite} from '../../actions'
 
@@ -26,15 +27,17 @@ class TreeCard extends Component {
     
     StatusBar.setBarStyle('dark-content', true);
     
-    const {name, image_src, isFavorited} = this.props;
+    const {treeData} = this.props;
+    const name = !!treeData.Names.English_Name ? treeData.Names.English_Name : treeData.Names.Ugandan_Name;
+    image_src = treeData.ImageUri;
+    isFavorited = false;
     
-    // replace image url and tree name with props
     return (
  
         <View style={styles.cardContainer}>
-          <TouchableOpacity onPress={() => {this.props.navigation.navigate('TreeInfo', {'treeName': name})}}>
+          <TouchableOpacity onPress={() => {this.props.navigation.navigate('TreeInfo', {'treeData': treeData})}}>
             <View style={styles.cardImageContainer}>
-              <Image source={image_src} style={styles.cardImage} />
+              <CachedImage source={{uri: image_src}} style={styles.cardImage} />
             </View>
             <View style={styles.cardRow}>
               <Text style={styles.cardTitle}>{name}</Text>

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Text, View, Image, ScrollView, Dimensions} from 'react-native';
 import {Button} from 'react-native-elements';
 import Tab from './components/tab/';
+import {CachedImage} from 'react-native-cached-image';
 
 import {styles} from './styles'
 import {dummyData} from 'UgandaTrees/src/assets/data/dummy-data';
@@ -15,8 +16,8 @@ export default class TreeInfo extends Component {
   constructor(props) {
     super(props);
     
-    const treeName = this.props.navigation.getParam('treeName', 'Coffee');
-    this.treeData = dummyData.find((tree) => (tree.name === treeName));
+    this.treeData = this.props.navigation.getParam('treeData');
+    this.treeName = !!this.treeData.Names.English_Name ? this.treeData.Names.English_Name : this.treeData.Names.Ugandan_Name;
 
   }
 
@@ -24,10 +25,10 @@ export default class TreeInfo extends Component {
     return (
       <View style={{flex: 1}}>
         <View>
-          <Frontal name={this.treeData.name} image_src={this.treeData.image_src}/>
+          <Frontal name={this.treeName} image_src={this.treeData.ImageUri}/>
         </View>
         <View style={{flex: 1}}>
-          <Tab treeData={this.treeData} />
+          <Tab treeData={this.treeData} treeName={this.treeName} />
         </View>
       </View>
     );
@@ -40,7 +41,7 @@ class Frontal extends Component {
     return (
       <View>
         <View>
-          <Image style={styles.frontalImage} source={image_src}/>
+          <CachedImage source={{uri: image_src}} style={styles.frontalImage} />
         </View>
         <View style={styles.frontalContainer}>
           <Text style={styles.frontalName}>{name}</Text>
@@ -50,8 +51,3 @@ class Frontal extends Component {
     );
   }
 }
-
-
-
-
-

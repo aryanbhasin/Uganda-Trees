@@ -1,7 +1,8 @@
 {
    "african-blackwood": {
       "Description": "A much-branched spiny shrub or well-branched tree, to 7 m. Diameter no more than 20-30 cm, often twisted. Grey-white spine-tipped branchlets bear the leaves.", 
-      "Ecology": null, 
+      "Ecology": null,
+      "ImageUri": "https://www.ourbreathingplanet.com/wp-content/uploads/2018/07/1-46.png", 
       "Names": {
          "English_Name": "African blackwood", 
          "Scientific_Name": "Dalbergia melanoxylon", 
@@ -25,9 +26,10 @@
          "Etc"
       ]
    }, 
-   "carribean-pine": {
+   "caribbean-pine": {
       "Description": "An evergreen tree with a straight bole and regular spreading crown up to 30 m high. The bole can reach over 1 m in diameter.", 
-      "Ecology": null, 
+      "Ecology": null,
+      "ImageUri": "https://bugwoodcloud.org/images/768x512/5579275.jpg",
       "Names": {
          "English_Name": "Caribbean pine", 
          "Scientific_Name": "Pinus caribaea", 
@@ -54,6 +56,7 @@
    "eucalyptus": {
       "Description": "A tall tree to 55 m, rather narrow, the crown rounded and open, the main stems straight.", 
       "Ecology": "Grows naturally in the cooler and wetter parts of S.W. Australia. It prefers good-quality loams with adequate but not excessive moisture. The climatic range is transitional and wet montane. Suitable for areas over 2,000 m above sea level, and does well in upland areas of Kabale District.", 
+      "ImageUri": "https://selectree.calpoly.edu/images/0500/43/original/eucalyptus-globulus-tree-2.jpg",
       "Names": {
          "English_Name": "Blue gum", 
          "Scientific_Name": "Eucalyptus globulus", 
@@ -85,6 +88,7 @@
    "indian-ash": {
       "Description": "A large tree reaching 60 m. The bole is often buttressed but then has a long straight trunk. It is an evergreen tree except in areas with a marked dry season.", 
       "Ecology": "Originally introduced in Uganda in arboretums, later planted throughout Uganda. It is most suitable for moderate altitudes with red soil and a moist climate, but can also stand some drought, 1,000-1,500 m.", 
+      "ImageUri": "https://selectree.calpoly.edu/images/0100/29/original/acrocarpus-fraxinifolius-canopy.jpg",
       "Names": {
          "English_Name": "Indian ash", 
          "Scientific_Name": "Acrocarpus fraxinifolius", 
@@ -114,6 +118,7 @@
    "jacaranda": {
       "Description": "A deciduous tree up to 20 m with spreading branches making a light crown.", 
       "Ecology": "A popular tree widely grown as an ornamental throughout the high and lowland tropics. It grows in most soils except water- logged ones, and is deep rooted. It prefers highland areas but can also grow in some drier ones. It is common in most towns of Uganda, particularly Fort Portal, 1,100-1,600 m.", 
+      "ImageUri": "https://cdn.shopify.com/s/files/1/0059/8835/2052/products/Jacaranda-Tree-450w_large.jpg?v=1555429237",
       "Names": {
          "English_Name": "Jacaranda", 
          "Scientific_Name": "Jacaranda mimosifolia", 
@@ -142,6 +147,7 @@
    "jackfruit": {
       "Description": "A medium-sized tree with thick branches, to 25 m. The bole is short, cylindrical and straight, up to 1 m in diameter in old specimens, branching less than 2 m from the ground.", 
       "Ecology": "Originates from Asia, probably in the forests of the Western Ghats in India. Today it is widespread in other parts of the tropics and most popular in Sri Lanka. Introduced into Uganda in the early 1940s at Entebbe Botanic Garden, it has become very popular and is now commonly planted in Eastern, Central and Western Regions. Near Lake Victoria seeds germinate and young trees sprout spontaneously so that the species has become invasive in secondary vegetation. It requires well-drained, deep and fertile soils and will not tolerate drought or waterlogging.", 
+      "ImageUri": "https://balconygardenweb-lhnfx0beomqvnhspx.netdna-ssl.com/wp-content/uploads/2015/07/growing-jackfruit.jpg",
       "Names": {
          "English_Name": "Jackfruit", 
          "Scientific_Name": "Artocarpus heterophyllus", 
@@ -170,6 +176,7 @@
    "mango": {
       "Description": "A densely leafy evergreen tree with a trunk soon branching to a rounded crown, usually 10-15 m.", 
       "Ecology": "One of the most important tropical fruit trees brought very early to East Africa. In Uganda, it is widely cultivated in Northern and North Eastern Regions. It does not tolerate flooding and prefers sandy-loamy soil which is well drained, but it can do quite well in dry areas. Roots penetrate deeply, so rocky subsoil should be avoided. The extensive shallow roots collect water and nutrients in upper soil levels. Does well from 700 to 1,800 m.", 
+      "ImageUri": "https://fateclick.com/images/article/20161229081140276.jpg",
       "Names": {
          "English_Name": "Mango", 
          "Scientific_Name": "Mangifera indica", 
@@ -199,6 +206,7 @@
    "mexican-cypress": {
       "Description": "An evergreen tree to 35 m with straight trunk, generally conical but irregular in shape, the branches hang down with branchlets in all directions.", 
       "Ecology": "A fast-growing tree widely used in East and Southern Africa and grown in plantations in many areas; introduced to Uganda, 1,100-3,000 m. At higher altitudes the tree tends to be invasive.", 
+      "ImageUri": "https://bugwoodcloud.org/images/768x512/1603820.jpg",
       "Names": {
          "English_Name": "Mexican cypress", 
          "Scientific_Name": "Cupressus lusitanica", 
@@ -227,6 +235,7 @@
    "mpewere": {
       "Description": "A very large deciduous tree to 50 m, branching relatively low down to give feathery layered foliage. Trunk often leaning or wavy to a wide flat crown. There are large thin buttresses extending 3-5 m up the bole. They may extend outwards like curved planks to 30 cm high radiating out to 5 m along the forest floor.", 
       "Ecology": "A tall tree of tropical lowland rain forest and riverine forest from Senegal, Sudan to Angola and Zaire. In Uganda it is a common and very characteristic species of the forests of the Lake Victoria belt, riparian in habit.", 
+      "ImageUri": "http://tropical.theferns.info/plantimages/sized/3/c/3c163fda5a72619137d999790af2c852d242e345_480px.jpg",
       "Names": {
          "English_Name": null, 
          "Scientific_Name": "Piptadeniastrum africanum", 
@@ -251,6 +260,7 @@
    "musizi": {
       "Description": "A leafy semi-deciduous tree 10-30 m, often a clear bole to 10 m, the branches rather horizontal, the crown flattened when young but more rounded with age.", 
       "Ecology": null, 
+      "ImageUri": "https://keys.lucidcentral.org/keys/v3/eafrinet/weeds/key/weeds/Media/Html/images/Maesopsis_eminii_(Umbrella_Tree)/maesopsis_eminii001.jpg",
       "Names": {
          "English_Name": null, 
          "Scientific_Name": "Maesopsis eminii", 
@@ -279,6 +289,7 @@
    "orange": {
       "Description": null, 
       "Ecology": "Sweet orange is a native of southern China or Cochin China. It is now grown widely throughout the tropics and subtropics but is no longer known in the wild. Orange trees produce more fruit with irrigation.", 
+      "ImageUri": "http://www.freshplaza.com/2017/Sitrus.JPG",
       "Names": {
          "English_Name": "Orange", 
          "Scientific_Name": "Citrus sinensis", 
@@ -303,6 +314,7 @@
    "pawpaw": {
       "Description": "A tree-like herb, 2-10 m, the trunk about 20 cm across, narrowing to a crown of leaves. Stem suckers often develop but branching only when the terminal bud is damaged. The trunk contains soft fibrous wood.", 
       "Ecology": "A short-lived tree grown throughout the subtropics in Africa, Australia and North America. It does better below 1,500 m in soils that are well drained, fertile and slightly acid (pH 6.0-6.5). It has shallow roots. In some areas it sprouts spontaneously after clearing secondary scrub and old cultivation.", 
+      "ImageUri": "https://media.gardenmaking.com/wp-content/uploads/20190203095039/pawpawtreeomafra.jpg",
       "Names": {
          "English_Name": "Pawpaw", 
          "Scientific_Name": "Carica papaya", 
@@ -329,6 +341,7 @@
    "terminalia": {
       "Description": "A shapely tree to about 10 m, with leafy horizontal branches.", 
       "Ecology": "A tree from Madagascar, now very popular in East Africa, especially Kenya. It has recently been introduced to Uganda and has gained popularity as an ornamental. It has been planted around Parliament buildings and along some streets in Kampala. It grows well in good soil and is drought resistant once estab- lished. Since the tree rarely flowers at high altitudes, seed is collected from trees in hotter low areas.", 
+      "ImageUri": "http://tropical.theferns.info/plantimages/sized/0/4/04215add5085f18c6e80caec7492ffd040ba6341_960px.jpg",
       "Names": {
          "English_Name": "Terminalia", 
          "Scientific_Name": "Terminalia mantaly", 

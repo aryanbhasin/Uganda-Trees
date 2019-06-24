@@ -1,16 +1,22 @@
 import {combineReducers} from 'redux';
-import {dummyData} from 'UgandaTrees/src/assets/data/dummy-data';
-import {ADD_FAVORITE, DELETE_FAVORITE, UPDATE_SEARCH} from '../actions'
+import {ADD_FAVORITE, DELETE_FAVORITE, UPDATE_SEARCH, GET_SEARCH_DATA} from '../actions'
 import {SET_PIC_URI, GET_LOCATION, GEOLOCATION_DENIED, RESET_LOCATION, SET_SPECIES} from '../actions'
-const initialSearchState = {
-  searchTerm: '',
-  searchResults: dummyData,
-}
+
 
 // **************************************** REDUCER FOR SEARCH ****************************************
+import {dummyData} from 'UgandaTrees/src/assets/data/dummy-data';
+const initialSearchState = {
+  searchTerm: '',
+  searchResults: null,
+  dummyData: null,
+  isLoading: true,
+}
 
 function search(state = initialSearchState, action) {
   switch (action.type) {
+    case GET_SEARCH_DATA:
+      const {data, isLoading} = action.payload
+      return {...state, dummyData: data, isLoading: isLoading, searchResults: data}
     case UPDATE_SEARCH:
       return {...state, searchTerm: action.payload.text, searchResults: action.payload.results};
     default:

@@ -13,8 +13,8 @@ class Searchbar extends Component {
       <View style={styles.searchBarContainer}>
         <SearchBar 
           placeholder='Search for a tree'
-          onChangeText={(text) => {this.props.updateSearch(text)}}
-          onClear={(text) => {this.props.updateSearch('')}}
+          onChangeText={(text) => {this.props.updateSearch(text, this.props.dummyData)}}
+          onClear={(text) => {this.props.updateSearch('', this.props.dummyData)}}
           value={this.props.searchTerm}
           autoCorrect={false}
           lightTheme
@@ -41,7 +41,8 @@ var styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
   return {
-    searchTerm: state.search.searchTerm
+    searchTerm: state.search.searchTerm,
+    dummyData: state.search.dummyData
   }
 };
 

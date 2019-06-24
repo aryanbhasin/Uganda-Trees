@@ -26,19 +26,30 @@ export var styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: 'OpenSans'
   },
-
+  bodyHeader: {
+    fontWeight: 'bold',
+    paddingTop: 10,
+    paddingBottom: 5,
+    fontSize: 17
+  },
   rowContainerStyle: {
-    flexDirection: 'row',
+    flexDirection: 'column',
     flex: 1,
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    justifyContent: 'center',
+    alignItems: 'flex-start',
     borderBottomWidth: 1,
     borderColor: '#ddd',
-    padding: 5
+    padding: 5,
+    paddingVertical: 10
   },
-  rowText: {
-    fontWeight: '500',
+  partHeader: {
+    fontWeight: 'bold',
     fontSize: 17,
-    paddingVertical: 8,
+    paddingBottom: 3
+  },
+  partInfo: {
+    fontWeight: '300',
+    fontSize: 17,
+    textAlign: 'justify',
   },
 });

@@ -1,7 +1,8 @@
-import {dummyData} from 'UgandaTrees/src/assets/data/dummy-data';
+import {firebaseApp} from 'UgandaTrees/App'
 
 // Action Types
 export const UPDATE_SEARCH = 'UPDATE_SEARCH';
+export const GET_SEARCH_DATA = 'GET_SEARCH_DATA';
 export const ADD_FAVORITE = 'ADD_FAVORITE';
 export const DELETE_FAVORITE = 'DELETE_FAVORITE';
 export const GET_LOCATION = 'GET_LOCATION';
@@ -10,15 +11,35 @@ export const SET_PIC_URI = 'SET_PIC_URI';
 export const RESET_LOCATION = 'RESET_LOCATION';
 export const SET_SPECIES = 'SET_SPECIES';
 
-// Action Creators
-export function updateSearch(text) {
+// **************************************** ACTION CREATORS FOR SEARCH ****************************************
+
+export function getSearchData() {
+  return dispatch => {
+    var dataRef = firebaseApp.database().ref('dummy-data-2');
+    dataRef.on('value', (snapshot) => {
+      var dummyData = [];
+      snapshot.forEach((child) => {
+        dummyData.push(child.val())
+      })
+      dispatch ({
+        type: GET_SEARCH_DATA,
+        payload: {
+          data: dummyData,
+          isLoading: false
+        }
+      });
+    })
+  }
+}
+
+export function updateSearch(text, dummyData) {
   let searchData;
-  
   (text === '') 
     ? searchData = dummyData
     : searchData = dummyData.filter((card) => {
         const searchTerm = text.toUpperCase();
-        return card.name.toUpperCase().indexOf(searchTerm) > -1;
+        const name = !!card.Names.English_Name ? card.Names.English_Name : card.Names.Ugandan_Name;
+        return name.toUpperCase().indexOf(searchTerm) > -1;
       })
   
   return {
@@ -29,6 +50,8 @@ export function updateSearch(text) {
     },
   }
 }
+
+// **************************************** ACTION CREATORS FOR FAVORITES ****************************************
 
 export function addFavorite(treeName) {
   return {

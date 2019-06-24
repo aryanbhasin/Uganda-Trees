@@ -3,6 +3,9 @@ package com.ugandatrees;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.reactnativecommunity.netinfo.NetInfoPackage;
+import com.RNFetchBlob.RNFetchBlobPackage;
+import com.RNFetchBlob.RNFetchBlobPackage;
 import com.swmansion.reanimated.ReanimatedPackage;
 import com.airbnb.android.react.maps.MapsPackage;
 import com.swmansion.rnscreens.RNScreensPackage;
@@ -29,6 +32,9 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new NetInfoPackage(),
+            new RNFetchBlobPackage(),
+            new RNFetchBlobPackage(),
             new ReanimatedPackage(),
             new MapsPackage(),
             new RNScreensPackage(),

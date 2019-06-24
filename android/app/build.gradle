@@ -138,6 +138,9 @@ android {
 }
 
 dependencies {
+    implementation project(':@react-native-community_netinfo')
+    implementation project(':rn-fetch-blob')
+    implementation project(':react-native-fetch-blob')
     implementation project(':react-native-reanimated')
     implementation project(':react-native-maps')
     implementation project(':react-native-screens')

@@ -6,45 +6,34 @@ import TreeCard from '../../../components/tree_card';
 import {SCREEN_WIDTH, SCREEN_HEIGHT} from 'UgandaTrees/src/styles/globalStyles'
 import Spinner from '../../../components/spinner'
 import {connect} from 'react-redux';
+import {getSearchData} from 'UgandaTrees/src/actions'
 
 class TreeCardList extends Component {
   
-  constructor() {
-    super();
-    var dataRef = firebaseApp.database().ref('dummy-tree-data');
-    dataRef.on('value', (snapshot) => {
-      var dummyData = [];
-      snapshot.forEach((child) => {
-        dummyData.push(child.val())
-      })
-      this.setState({dataLoading: false, data: dummyData})
-    })
+  componentDidMount() {
+    this.props.getSearchData();
   }
-  
-  state = {
-    dataLoading: true,
-    data: []
-  }
-
   
   render() {
-                    // UNCOMMENT TO ADD SPINNER WHILE DATA IS BEING RENDERED
-    // if (this.state.dataLoading) {
-    //   return (
-    //     <Spinner />
-    //   );
-    // }
+                    
+    if (this.props.dataLoading) {
+      return (
+        <Spinner />
+      );
+    }
     
-    // the search data is still being taken from dummyData.js
     return (
       <ScrollView style={styles.cardListScroll} keyboardShouldPersistTaps='never' showsVerticalScrollIndicator={false}>
         {this.props.searchResults.map((tree, index) => {
+          const name = !!tree.Names.English_Name ? tree.Names.English_Name : tree.Names.Ugandan_Name;
+          
           // goes through favorites state to find isFavorited status of
-          var currTree = this.props.favStatus.find((item) => {
-            return (item.name === tree.name);
-          }); 
-          const isTreeFavorited = currTree.isFavorited;
-          return (<TreeCard key={index} name={tree.name} image_src={tree.image_src} isFavorited={isTreeFavorited} navigation={this.props.navigation}/>)
+          // var currTree = this.props.favStatus.find((item) => {
+          //   return (item.name === name);
+          // }); 
+          // const isTreeFavorited = currTree.isFavorited;
+          
+          return (<TreeCard key={index} treeData={tree} isFavorited={false} navigation={this.props.navigation}/>)
         })}
       </ScrollView>
     );
@@ -60,8 +49,13 @@ var styles= StyleSheet.create({
 const mapStateToProps = (state) => {
   return {
     searchResults: state.search.searchResults,
+    dataLoading: state.search.isLoading,
     favStatus: state.favorites.favStatus,
   }
 };
 
-export default connect(mapStateToProps)(TreeCardList);
+const mapDispatchToProps = {
+  getSearchData
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TreeCardList);
