@@ -69,17 +69,6 @@ class TagMap extends Component {
     
   }
   
-  getTreeDirections(destination) {
-    const data = {
-      source: this.props.currPos,
-      destination: destination,
-      params: [
-        {key: "travelmode", value: "walking"}
-      ]
-    }
-    getDirections(data);
-  }
-  
   renderMarker(marker) {
 
     return (
@@ -90,7 +79,7 @@ class TagMap extends Component {
         <Callout style={{width: 110, height: null}}>
           <View style={{justifyContent: 'center', alignItems: 'center'}}>
             <Image width={50} source={{uri: marker.imageUri}}/>
-            <CalloutSubview onPress={() => this.getTreeDirections(marker.coords)} style={{marginTop: 5}}>
+            <CalloutSubview onPress={() => getTreeDirections(this.props.currPos, marker.coords)} style={{marginTop: 5}}>
               <Text style={{borderRadius: 10, borderWidth: 1, color: 'cornflowerblue', borderColor: 'cornflowerblue', padding: 5}}>Get Directions</Text>
             </CalloutSubview>
           </View>
@@ -130,6 +119,17 @@ class TagMap extends Component {
       </View>
     );
   }
+}
+
+export function getTreeDirections(currPos, destination) {
+  const data = {
+    source: currPos,
+    destination: destination,
+    params: [
+      {key: "travelmode", value: "walking"}
+    ]
+  }
+  getDirections(data);
 }
 
 const mapStateToProps = (state) => {

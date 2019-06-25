@@ -7,7 +7,10 @@ import TreeInfo from '../components/tree_info';
 export default createStackNavigator(
   {
     Explore: {
-      screen: Explore
+      screen: Explore,
+      navigationOptions: {
+        title: "Explore"
+      }
     },
     TreeInfo: {
       screen: TreeInfo

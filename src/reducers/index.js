@@ -1,7 +1,8 @@
 import {combineReducers} from 'redux';
 import {ADD_FAVORITE, DELETE_FAVORITE, UPDATE_SEARCH, GET_SEARCH_DATA} from '../actions'
 import {SET_PIC_URI, GET_LOCATION, GEOLOCATION_DENIED, RESET_LOCATION, SET_SPECIES} from '../actions'
-
+import {SET_REGION, LOCATION_DENIED, CHANGE_REGION} from '../actions'
+import {SCREEN_WIDTH, SCREEN_HEIGHT} from 'UgandaTrees/src/styles/globalStyles'
 
 // **************************************** REDUCER FOR SEARCH ****************************************
 const initialSearchState = {
@@ -79,9 +80,37 @@ function newTagInfo(state = initTagInfo, action) {
   }
 }
 
+// **************************************** REDUCER FOR MAP DISPLAY ****************************************
+const ASPECT_RATIO = SCREEN_WIDTH / (SCREEN_HEIGHT * 0.9);
+const LAT_DELTA = 0.0222;
+const LON_DELTA = LAT_DELTA * ASPECT_RATIO;
+
+initialRegion = {
+  latitude: 0.046778,
+  longitude: 32.463196,
+  latitudeDelta: LAT_DELTA,
+  longitudeDelta: LON_DELTA
+}
+
+function mapDisplay(state = initialRegion, action) {
+  switch(action.type) {
+    case SET_REGION:
+      return {...state, latitude: action.payload.latitude, longitude: action.payload.longitude}
+    case CHANGE_REGION:
+      // action.payload has new region
+      return action.payload
+    case LOCATION_DENIED:
+      alert('This app needs to use your location to tag a tree')
+      return state;
+    default:
+      return state;
+  }
+}
+
 // combines the reducers
 export default combineReducers({
   search,
   favorites,
   newTagInfo,
+  mapDisplay,
 });

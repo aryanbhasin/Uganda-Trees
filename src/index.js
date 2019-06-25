@@ -7,6 +7,7 @@ import FlashMessage from 'react-native-flash-message';
 import ExploreScreen from './navigators/ExploreScreen';
 import FavoritesScreen from './navigators/FavoritesScreen';
 import TagScreen from './navigators/TagScreen';
+import MapScreen from './navigators/MapScreen'
 
 import {store, persistor} from './store';
 import {Provider} from 'react-redux';
@@ -24,6 +25,9 @@ const RootTabNav = createBottomTabNavigator(
     },
     Tag: {
       screen: TagScreen
+    },
+    Map: {
+      screen: MapScreen
     },
     Favorites: {
       screen: FavoritesScreen

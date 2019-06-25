@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View, Platform} from 'react-native';
+import {StyleSheet, Text, View, Platform, ScrollView} from 'react-native';
 import { Button } from 'react-native-elements';
 import Image from 'react-native-scalable-image';
 import {connect} from 'react-redux';
@@ -11,7 +11,7 @@ import TagSpecies from './TagSpecies';
 import TagMapView from './TagMapView';
 
 import {firebaseApp} from 'UgandaTrees/App'
-import {getLocation, resetLocation} from 'UgandaTrees/src/actions';
+import {getLocation, resetLocation, setPicURI} from 'UgandaTrees/src/actions';
 
 import {AddTagStyles as styles} from '../styles';
 
@@ -48,7 +48,12 @@ class AddTag extends Component {
             icon: "success",
             duration: 1800
           });
-          setTimeout(() => {this.props.navigation.navigate('CapturePic')}, 1800);
+          setTimeout(() => {
+            this.props.setPicURI('');
+            // clears the text input field after submitting a tag
+            this.textRef.clear();
+            this.props.navigation.navigate('CapturePic')
+          }, 1800);
           this.setState({uploadingTag: false})
         }
       }
@@ -81,25 +86,29 @@ class AddTag extends Component {
     
   }
   
+  getRef = (ref) => {
+    this.textRef = ref;
+  }
+  
   render() {
     const imageUri = this.props.navigation.getParam('imageUri');
     const {species, coords} = this.props;
     
     return (
-      
-      <View style={{flex: 1}}>
+                          // remove scrollview when replacing textinput with dropdown for tagging species
+      <ScrollView keyboardShouldPersistTaps='never' scrollEnabled={false} contentContainerStyle={{flex: 1}}>
         <View style={styles.container_top}>
           <View style={{padding: 10}}>
             <Image source={{uri: imageUri}} width={100} style={styles.capturedImage}/>
           </View>
-          <TagSpecies />
+          <TagSpecies getRef={this.getRef} />
         </View>
         <View style={{flex: 4, justifyContent: 'center', alignItems: 'center'}}>
             <TagMapView />
         </View>
         <View style={styles.container_buttons}>
           <View style={styles.buttonView}>
-            <Button title="Get Location" onPress={() => this.props.getLocation()}/>
+            <Button title="Tag Location" onPress={() => this.props.getLocation()}/>
           </View>
           <View style={styles.buttonView}>
             <Button title="Submit Tag" onPress={() => this.submitTag(species, coords, imageUri)}/>
@@ -110,7 +119,7 @@ class AddTag extends Component {
             <Spinner />
           </View>
         )}
-      </View>
+      </ScrollView>
     );
   }
 }
@@ -125,6 +134,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
   getLocation: getLocation,
   resetLocation: resetLocation,
+  setPicURI: setPicURI,
 }
 
 

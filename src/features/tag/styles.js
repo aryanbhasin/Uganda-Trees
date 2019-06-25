@@ -42,17 +42,18 @@ export var CapturePicStyles = StyleSheet.create({
 
 export var AddTagStyles = StyleSheet.create({
   container_top: {
-    flex: 1.5,
+    flex: 2,
     flexDirection: 'row',
     justifyContent: 'center',
-    marginVertical: 30,
+    alignItems: 'flex-start'
   },
   capturedImage: {
     borderRadius: 10,
-    marginRight: 10
+    marginRight: 10,
+    marginBottom: 10
   },
   container_buttons: {
-    flex: 1,
+    flex: 0.5,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'flex-end',

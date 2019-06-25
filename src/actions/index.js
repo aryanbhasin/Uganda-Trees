@@ -10,6 +10,9 @@ export const GEOLOCATION_DENIED = 'GEOLOCATION_DENIED';
 export const SET_PIC_URI = 'SET_PIC_URI';
 export const RESET_LOCATION = 'RESET_LOCATION';
 export const SET_SPECIES = 'SET_SPECIES';
+export const SET_REGION = 'SET_REGION';
+export const CHANGE_REGION = 'CHANGE_REGION';
+export const LOCATION_DENIED = 'LOCATION_DENIED';
 
 // **************************************** ACTION CREATORS FOR SEARCH ****************************************
 
@@ -88,7 +91,8 @@ export function getLocation() {
             type: 'GEOLOCATION_DENIED',
           });
         }
-      }
+      },
+      {enableHighAccuracy: true}
     );
   }
 }
@@ -113,3 +117,36 @@ export function setSpecies(species) {
   }
 }
 
+// **************************************** ACTION CREATORS FOR MAP VIEW ****************************************
+
+// uses thunk
+export function setMapRegion() {
+  return dispatch => {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        dispatch({
+          type: SET_REGION,
+          payload: {
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude
+          }
+        });
+      },
+      (error) => {
+        if (error.code === 1) {
+          dispatch({
+            type: LOCATION_DENIED,
+          });
+        }
+      },
+      {enableHighAccuracy: true}
+    );
+  }
+}
+
+export function changeMapRegion(region) {
+  return {
+    type: CHANGE_REGION,
+    payload: region
+  }
+}

@@ -16,8 +16,8 @@ class CapturePic extends Component {
 
   handleCapturePic = async() => {
     if (this.camera) {
-      const options = {quality: 0.5, base64: true};
-      const {uri} = await this.camera.takePictureAsync();
+      const options = {quality: 0.1, base64: true};
+      const {uri} = await this.camera.takePictureAsync(options);
       this.props.setPicURI(uri)
     }
   }

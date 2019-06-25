@@ -6,12 +6,16 @@ import TreeCard from '../../../components/tree_card';
 import {SCREEN_WIDTH, SCREEN_HEIGHT} from 'UgandaTrees/src/styles/globalStyles'
 import Spinner from '../../../components/spinner'
 import {connect} from 'react-redux';
-import {getSearchData} from 'UgandaTrees/src/actions'
+import {getSearchData, setMapRegion} from 'UgandaTrees/src/actions'
 
 class TreeCardList extends Component {
   
   componentDidMount() {
     this.props.getSearchData();
+    // sets initial map region for MapDisplay (Map Screen)
+    
+    // uncomment to get actual location
+    // this.props.setMapRegion();
   }
   
   render() {               
@@ -20,7 +24,6 @@ class TreeCardList extends Component {
         <Spinner />
       );
     }
-    console.log(this.props.favList);
     return (
       <ScrollView style={styles.cardListScroll} keyboardShouldPersistTaps='never' showsVerticalScrollIndicator={false}>
         {this.props.searchResults.map((treeData, index) => {
@@ -51,7 +54,8 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-  getSearchData
+  getSearchData,
+  setMapRegion
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(TreeCardList);
