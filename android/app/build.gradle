@@ -138,6 +138,7 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-image-resizer')
     implementation project(':@react-native-community_netinfo')
     implementation project(':rn-fetch-blob')
     implementation project(':react-native-fetch-blob')

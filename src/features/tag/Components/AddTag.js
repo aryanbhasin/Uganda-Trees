@@ -6,6 +6,7 @@ import {connect} from 'react-redux';
 import Spinner from 'UgandaTrees/src/components/spinner'
 import {showMessage, hideMessage} from 'react-native-flash-message';
 import RNFetchBlob from 'rn-fetch-blob'
+import ImageResizer from 'react-native-image-resizer';
 
 import TagSpecies from './TagSpecies';
 import TagMapView from './TagMapView';
@@ -73,25 +74,31 @@ class AddTag extends Component {
     // Upload Image on Storage
     const imageFile = RNFetchBlob.wrap(uploadUri);      
     Blob.build(imageFile, { type: 'image/jpg;' }).then((imageBlob) => {
-      var uploadTask = imageRef.put(imageBlob, { contentType: 'image/jpg' });
-      uploadTask.on('state_changed', function(snapshot){
-        var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        console.log('Upload is ' + progress + '% done'); // Task progress
-      }, (error) => console.log(error),
-      () => {
+      imageRef.put(imageBlob, { contentType: 'image/jpg' }).then((snapshot) => {
         // Extract downloadURL and then upload TagInfo on Realtime DB
-        uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {this.uploadTagInfo(species, coords, tagKey, downloadURL)});
-      });
+        snapshot.ref.getDownloadURL().then((downloadURL) => {this.uploadTagInfo(species, coords, tagKey, downloadURL)});
+      })
     })
-    
   }
   
   getRef = (ref) => {
     this.textRef = ref;
   }
   
+  tagLocation() {
+    this.props.getLocation();
+    showMessage({
+      message: "Location tagged",
+      type: "info",
+      icon: "info",
+      duration: 1000
+    });
+  }
+  
   render() {
-    const imageUri = this.props.navigation.getParam('imageUri');
+    const fullUri = this.props.navigation.getParam('imageUri');
+    let resizedImage;
+    ImageResizer.createResizedImage(fullUri, 300, 500, 'JPEG', 40).then((response) => {resizedImage = response.uri})
     const {species, coords} = this.props;
     
     return (
@@ -99,7 +106,7 @@ class AddTag extends Component {
       <ScrollView keyboardShouldPersistTaps='never' scrollEnabled={false} contentContainerStyle={{flex: 1}}>
         <View style={styles.container_top}>
           <View style={{padding: 10}}>
-            <Image source={{uri: imageUri}} width={100} style={styles.capturedImage}/>
+            <Image source={{uri: resizedImage}} width={100} style={styles.capturedImage}/>
           </View>
           <TagSpecies getRef={this.getRef} />
         </View>
@@ -108,10 +115,10 @@ class AddTag extends Component {
         </View>
         <View style={styles.container_buttons}>
           <View style={styles.buttonView}>
-            <Button title="Tag Location" onPress={() => this.props.getLocation()}/>
+            <Button title="Tag Location" onPress={() => this.tagLocation()}/>
           </View>
           <View style={styles.buttonView}>
-            <Button title="Submit Tag" onPress={() => this.submitTag(species, coords, imageUri)}/>
+            <Button title="Submit Tag" onPress={() => this.submitTag(species, coords, resizedImage)}/>
           </View>
         </View>
         {this.state.uploadingTag && (
@@ -136,6 +143,5 @@ const mapDispatchToProps = {
   resetLocation: resetLocation,
   setPicURI: setPicURI,
 }
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddTag);

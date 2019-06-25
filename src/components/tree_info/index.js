@@ -3,17 +3,15 @@ import {Text, View, Image, ScrollView, Dimensions} from 'react-native';
 import {Button} from 'react-native-elements';
 import Tab from './components/tab/';
 import {CachedImage} from 'react-native-cached-image';
-
+import {getLocation} from 'UgandaTrees/src/actions';
+import {connect} from 'react-redux'
 import {styles} from './styles'
 
-import SCREEN_WIDTH from 'UgandaTrees/src/styles/globalStyles'
-
-import {firebaseApp} from 'UgandaTrees/App'
-
-export default class TreeInfo extends Component {
+class TreeInfo extends Component {
   
   constructor(props) {
     super(props);
+    this.props.getLocation();
     
     this.treeData = this.props.navigation.getParam('treeData');
     this.treeName = this.treeData.Names.Primary_Name
@@ -34,6 +32,10 @@ export default class TreeInfo extends Component {
   }
 }
 
+const mapDispatchToProps = {
+  getLocation,
+}
+
 class Frontal extends Component {
   render() {
     const {name, image_src} = this.props;
@@ -50,3 +52,5 @@ class Frontal extends Component {
     );
   }
 }
+
+export default connect(null, mapDispatchToProps)(TreeInfo)

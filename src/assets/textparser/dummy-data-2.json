@@ -300,6 +300,32 @@
          "Oil"
       ]
    }, 
+   "palm": {
+      "Description": null, 
+      "Ecology": "Widespread throughout the dry areas of tropical Africa but only where the watertable is high. It is usually found in sandy well- drained soil, sometimes coastal or at lower altitudes, often in dense stands. In Uganda common in flood plains along rivers Semliki and Kafu, also in Palabek County of Kitgum District, 0-1,200 m.", 
+      "Names": {
+         "English_Name": "African fan palm", 
+         "Scientific_Name": "Borassus aethiopum", 
+         "Ugandan_Name": "Katuugo"
+      }, 
+      "Parts": {
+         "Bark": null, 
+         "Flower": "male and female on different trees, male producing branched spikes up to 2 m carrying the pollen.", 
+         "Fruit": "large, in bunches, round up to 15 cm diameter, orange- brown, cupped in the enlarged calyx, fibrous oily pulp around 3 seeds, each 8 cm brown, woody. ", 
+         "Leaves": "large fan shaped to 4 m long by 3 m across, deeply divided into leaflets, thorny at the base.", 
+         "Seeds": "No. of seeds per kg: 2-3. Seeds should be dried in the shade to avoid excessive sunshine on one side of the seed. The seed can be sown without removing the pulp surrounding it. Germination takes one month,"
+      }, 
+      "Propagation": "Direct sowing on site, seedlings", 
+      "Remarks": "Elephants eat the fruits, thus distributing the tree. The wood is hard and resistant to termites and fungi. However, over-tapping of the tree for its sap (palm wine) has made the tree rare. In Uganda, borassus palms are cut and hollowed out to make beehives. ", 
+      "Uses": [
+         "Firewood", 
+         "Charcoal", 
+         "Poles", 
+         "Timber (roofing", 
+         "Door frames", 
+         "Etc"
+      ]
+   }, 
    "pawpaw": {
       "Description": "A tree-like herb, 2-10 m, the trunk about 20 cm across, narrowing to a crown of leaves. Stem suckers often develop but branching only when the terminal bud is damaged. The trunk contains soft fibrous wood.", 
       "Ecology": "A short-lived tree grown throughout the subtropics in Africa, Australia and North America. It does better below 1,500 m in soils that are well drained, fertile and slightly acid (pH 6.0-6.5). It has shallow roots. In some areas it sprouts spontaneously after clearing secondary scrub and old cultivation.", 

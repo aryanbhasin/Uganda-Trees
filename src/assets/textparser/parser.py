@@ -147,7 +147,7 @@ def buildData(text):
     
 
 # ******************** BUILDING ALL_DATA JSON ********************
-filesList = ['Eucalyptus.docx', 'Pawpaw.docx', 'African-blackwood.docx', 'Carribean-pine.docx', 'Indian-ash.docx', 'Jacaranda.docx', 'Jackfruit.docx', 'Mango.docx', 'Mexican-cypress.docx', 'Mpewere.docx', 'Musizi.docx', 'Terminalia.docx', 'Orange.docx']
+filesList = ['Eucalyptus.docx', 'Pawpaw.docx', 'African-blackwood.docx', 'Carribean-pine.docx', 'Indian-ash.docx', 'Jacaranda.docx', 'Jackfruit.docx', 'Mango.docx', 'Mexican-cypress.docx', 'Mpewere.docx', 'Musizi.docx', 'Palm.docx', 'Terminalia.docx', 'Orange.docx']
 allData = {}
 for file in filesList:
     text = readtxt(file)

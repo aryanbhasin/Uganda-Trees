@@ -15,7 +15,7 @@ class TreeCardList extends Component {
     // sets initial map region for MapDisplay (Map Screen)
     
     // uncomment to get actual location
-    // this.props.setMapRegion();
+    this.props.setMapRegion();
   }
   
   render() {               

@@ -5,6 +5,7 @@ import FAIcon from 'react-native-vector-icons/FontAwesome'
 import FeatherIcon from 'react-native-vector-icons/Feather'
 import {connect} from 'react-redux';
 
+
 import {setPicURI} from 'UgandaTrees/src/actions';
 import {CapturePicStyles as styles} from '../styles'
 
@@ -18,7 +19,7 @@ class CapturePic extends Component {
     if (this.camera) {
       const options = {quality: 0.1, base64: true};
       const {uri} = await this.camera.takePictureAsync(options);
-      this.props.setPicURI(uri)
+      this.props.setPicURI(uri);
     }
   }
   

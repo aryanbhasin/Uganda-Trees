@@ -12,8 +12,8 @@ import getDirections from 'react-native-google-maps-directions';
 import {Button} from 'react-native-elements';
 import FA5Icon from 'react-native-vector-icons/FontAwesome5';
 
-const LAT_DELTA = 0.0522;
-const LON_DELTA = 0.0522; // to render a square MapView
+const LAT_DELTA = 0.0222;
+const LON_DELTA = 0.0222; // to render a square MapView
 
 class TagMap extends Component {
   
@@ -24,13 +24,19 @@ class TagMap extends Component {
   constructor(props) {
     super(props);
     this.props.getLocation();
-    
+    const {treeName, currPos} = this.props;
     this.state = {
       markers: [],
       markersLoading: true,
       closestTreeKey: null,
+      region: {
+        latitude: currPos.latitude,
+        longitude: currPos.longitude,
+        latitudeDelta: LAT_DELTA,
+        longitudeDelta: LON_DELTA,
+      }
     }
-    const {treeName, currPos} = this.props;
+    
     this.fetchTags(treeName, currPos);
     
   }
@@ -66,7 +72,6 @@ class TagMap extends Component {
     if (this.closestTreeRef) {
       this.closestTreeRef.showCallout();
     }
-    
   }
   
   renderMarker(marker) {
@@ -92,13 +97,6 @@ class TagMap extends Component {
     
     const {currPos} = this.props;
     
-    let region = {
-      latitude: currPos.latitude,
-      longitude: currPos.longitude,
-      latitudeDelta: LAT_DELTA,
-      longitudeDelta: LON_DELTA,
-    }
-    
     if (this.state.markersLoading) {
       return (<Spinner />);
     }
@@ -106,7 +104,7 @@ class TagMap extends Component {
     return (
       <View style={{flex: 1}}>
         <View style={{flex: 1}}>
-          <MapView region={region} style={{...StyleSheet.absoluteFill}} showsUserLocation={true}>
+          <MapView region={this.state.region} onRegionChangeComplete={(region) => this.setState({region})} style={{...StyleSheet.absoluteFill}} showsUserLocation={true}>
             {this.state.markers.map(marker => this.renderMarker(marker))}
           </MapView>
         </View>

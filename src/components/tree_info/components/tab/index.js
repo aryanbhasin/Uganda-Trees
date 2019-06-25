@@ -11,6 +11,10 @@ import {BasicInfo, Stats} from './tab-components';
 import TagMap from './tagmap';
 
 export default class Tab extends Component {
+  
+  componentDidMount() {
+    this.props.getLocation();
+  }
 
   state = {
     index: 0,
