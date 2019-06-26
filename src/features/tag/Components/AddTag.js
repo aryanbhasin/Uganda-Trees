@@ -6,7 +6,6 @@ import {connect} from 'react-redux';
 import Spinner from 'UgandaTrees/src/components/spinner'
 import {showMessage, hideMessage} from 'react-native-flash-message';
 import RNFetchBlob from 'rn-fetch-blob'
-import ImageResizer from 'react-native-image-resizer';
 
 import TagSpecies from './TagSpecies';
 import TagMapView from './TagMapView';
@@ -96,17 +95,16 @@ class AddTag extends Component {
   }
   
   render() {
-    const fullUri = this.props.navigation.getParam('imageUri');
-    let resizedImage;
-    ImageResizer.createResizedImage(fullUri, 300, 500, 'JPEG', 40).then((response) => {resizedImage = response.uri})
+    
     const {species, coords} = this.props;
+    const imageUri = this.props.navigation.getParam('imageUri');
     
     return (
                           // remove scrollview when replacing textinput with dropdown for tagging species
       <ScrollView keyboardShouldPersistTaps='never' scrollEnabled={false} contentContainerStyle={{flex: 1}}>
         <View style={styles.container_top}>
           <View style={{padding: 10}}>
-            <Image source={{uri: resizedImage}} width={100} style={styles.capturedImage}/>
+            <Image source={{uri: imageUri}} width={100} style={styles.capturedImage}/>
           </View>
           <TagSpecies getRef={this.getRef} />
         </View>
@@ -118,7 +116,10 @@ class AddTag extends Component {
             <Button title="Tag Location" onPress={() => this.tagLocation()}/>
           </View>
           <View style={styles.buttonView}>
-            <Button title="Submit Tag" onPress={() => this.submitTag(species, coords, resizedImage)}/>
+            <Button title="Submit Tag" onPress={() => this.submitTag(species, coords, imageUri)}/>
+          </View>
+          <View style={styles.buttonView}>
+            <Button title="Tag Backup" onPress={() => this.uploadTagInfo(species, coords, uuidv1(), 'temp URL')}/>
           </View>
         </View>
         {this.state.uploadingTag && (

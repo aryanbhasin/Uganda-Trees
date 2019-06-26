@@ -3,6 +3,8 @@ import {StyleSheet, Text, View} from 'react-native';
 import {createBottomTabNavigator, createAppContainer} from 'react-navigation';
 import { useScreens } from 'react-native-screens';
 import FlashMessage from 'react-native-flash-message';
+import FAIcon from 'react-native-vector-icons/FontAwesome';
+import FA5Icon from 'react-native-vector-icons/FontAwesome';
 
 import ExploreScreen from './navigators/ExploreScreen';
 import FavoritesScreen from './navigators/FavoritesScreen';
@@ -21,20 +23,48 @@ useScreens();
 const RootTabNav = createBottomTabNavigator(
   {
     Explore: {
-      screen: ExploreScreen
+      screen: ExploreScreen,
+      navigationOptions: {
+        tabBarIcon: ({tintColor}) => (
+          <FAIcon name="binoculars" size={16} color={tintColor} />
+        )
+      }
     },
     Tag: {
-      screen: TagScreen
+      screen: TagScreen,
+      navigationOptions: {
+        tabBarIcon: ({tintColor}) => (
+          <FAIcon name="map-marker" size={20} color={tintColor} />
+        )
+      }
     },
     Map: {
-      screen: MapScreen
+      screen: MapScreen,
+      navigationOptions: {
+        tabBarIcon: ({tintColor}) => (
+          <FA5Icon name="map" size={16} color={tintColor} />
+        )
+      }
     },
     Favorites: {
-      screen: FavoritesScreen
+      screen: FavoritesScreen,
+      navigationOptions: {
+        tabBarIcon: ({tintColor}) => (
+          <FAIcon name="heart" size={17} color={tintColor} />
+        )
+      }
     }
   },
   {
-    initialRouteName: 'Explore'
+    initialRouteName: 'Tag',
+    tabBarOptions: {
+      activeTintColor: 'rgb(220, 58, 28)',
+      labelStyle: {
+        fontSize: 12,
+        fontWeight: '500',
+      },
+      showLabel: true,
+    }
   }
 );
 

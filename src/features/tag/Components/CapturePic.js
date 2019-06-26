@@ -4,7 +4,7 @@ import {RNCamera} from 'react-native-camera';
 import FAIcon from 'react-native-vector-icons/FontAwesome'
 import FeatherIcon from 'react-native-vector-icons/Feather'
 import {connect} from 'react-redux';
-
+import ImageResizer from 'react-native-image-resizer';
 
 import {setPicURI} from 'UgandaTrees/src/actions';
 import {CapturePicStyles as styles} from '../styles'
@@ -24,9 +24,10 @@ class CapturePic extends Component {
   }
   
   acceptedPic(imageUri) {
-    navigator.geolocation.requestAuthorization();
-    
-    this.props.navigation.navigate('AddTag', {imageUri: imageUri})
+    ImageResizer.createResizedImage(imageUri, 300, 500, 'JPEG', 40).then(response => {
+      navigator.geolocation.requestAuthorization();
+      this.props.navigation.navigate('AddTag', {imageUri: response.uri})
+    })
   }
   
   render(){
@@ -64,7 +65,7 @@ class CapturePic extends Component {
           onFocusChanged={ this.state.handleFocusChanged }
           androidCameraPermissionOptions={{
             title: 'Permission to use camera',
-            message: 'We need your permission to use your camera',
+            message: 'This app needs your permission to use your camera',
             buttonPositive: 'Ok',
             buttonNegative: 'Cancel',
           }}

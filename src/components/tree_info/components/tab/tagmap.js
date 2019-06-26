@@ -3,7 +3,6 @@ import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
 import {styles} from '../../styles';
 import MapView, {Marker, Callout, CalloutSubview} from 'react-native-maps';
 import {connect} from 'react-redux';
-import {getLocation} from 'UgandaTrees/src/actions';
 import {firebaseApp} from 'UgandaTrees/App';
 import Image from 'react-native-scalable-image';
 import Spinner from 'UgandaTrees/src/components/spinner'
@@ -23,8 +22,8 @@ class TagMap extends Component {
   
   constructor(props) {
     super(props);
-    this.props.getLocation();
     const {treeName, currPos} = this.props;
+    this.mapRef = null;
     this.state = {
       markers: [],
       markersLoading: true,
@@ -75,7 +74,6 @@ class TagMap extends Component {
   }
   
   renderMarker(marker) {
-
     return (
       <Marker coordinate={marker.coords} key={marker.key} ref={(marker.key === this.state.closestTreeKey) ? this.getTreeRef : null }>
         <View>
@@ -95,8 +93,6 @@ class TagMap extends Component {
   
   render() {
     
-    const {currPos} = this.props;
-    
     if (this.state.markersLoading) {
       return (<Spinner />);
     }
@@ -104,7 +100,12 @@ class TagMap extends Component {
     return (
       <View style={{flex: 1}}>
         <View style={{flex: 1}}>
-          <MapView region={this.state.region} onRegionChangeComplete={(region) => this.setState({region})} style={{...StyleSheet.absoluteFill}} showsUserLocation={true}>
+          <MapView 
+            region={this.state.region} 
+            onRegionChangeComplete={(region) => this.setState({region})} 
+            style={{...StyleSheet.absoluteFill}} 
+            showsUserLocation={true}
+            ref={(ref) => { this.mapRef = ref }}>
             {this.state.markers.map(marker => this.renderMarker(marker))}
           </MapView>
         </View>
@@ -136,8 +137,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = {
-  getLocation,
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(TagMap);
+export default connect(mapStateToProps)(TagMap);

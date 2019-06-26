@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {createStackNavigator, createAppContainer} from 'react-navigation';
-
 import Favorites from '../features/favorites';
 import TreeInfo from '../components/tree_info';
 

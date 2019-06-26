@@ -6,11 +6,13 @@ import FAIcon from 'react-native-vector-icons/FontAwesome';
 import Spinner from 'UgandaTrees/src/components/spinner';
 import {styles} from '../../styles'
 import {SCREEN_WIDTH} from 'UgandaTrees/src/styles/globalStyles'
+import {getLocation} from 'UgandaTrees/src/actions';
+import {connect} from 'react-redux';
 
 import {BasicInfo, Stats} from './tab-components';
 import TagMap from './tagmap';
 
-export default class Tab extends Component {
+class Tab extends Component {
   
   componentDidMount() {
     this.props.getLocation();
@@ -47,9 +49,7 @@ export default class Tab extends Component {
   }
   
   render() {
-    
     const {treeData, treeName} = this.props;
-    
     const InfoRoute = () => (
       <View style={{flex: 1, marginHorizontal: 20}}>
         <BasicInfo treeData={treeData}/>
@@ -90,3 +90,9 @@ export default class Tab extends Component {
     );
   }
 }
+
+const mapDispatchToProps = {
+  getLocation,
+}
+
+export default connect(null, mapDispatchToProps)(Tab);

@@ -55,9 +55,10 @@ export var AddTagStyles = StyleSheet.create({
   container_buttons: {
     flex: 0.5,
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'space-around',
     alignItems: 'flex-end',
     marginBottom: 10,
+    marginVertical: 5
     
   },
   buttonView: {
