@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, View, ScrollView} from 'react-native';
 import { Dropdown } from 'react-native-material-dropdown';
-import {dummyData} from 'UgandaTrees/src/assets/data/dummy-data';
 import {connect} from 'react-redux';
 import { TextField } from 'react-native-material-textfield';
 

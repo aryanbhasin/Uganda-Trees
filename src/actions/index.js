@@ -18,7 +18,7 @@ export const LOCATION_DENIED = 'LOCATION_DENIED';
 
 export function getSearchData() {
   return dispatch => {
-    var dataRef = firebaseApp.database().ref('dummy-data-2');
+    var dataRef = firebaseApp.database().ref('tree-data');
     dataRef.on('value', (snapshot) => {
       var dummyData = [];
       snapshot.forEach((child) => {

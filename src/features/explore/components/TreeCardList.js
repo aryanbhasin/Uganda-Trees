@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {View, Text, StyleSheet, ScrollView} from 'react-native';
 import {firebaseApp} from 'UgandaTrees/App'
 import TreeCard from '../../../components/tree_card';
-// import {dummyData} from 'UgandaTrees/src/assets/data/dummy-data';
 import {SCREEN_WIDTH, SCREEN_HEIGHT} from 'UgandaTrees/src/styles/globalStyles'
 import Spinner from '../../../components/spinner'
 import {connect} from 'react-redux';

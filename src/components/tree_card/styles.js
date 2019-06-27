@@ -28,7 +28,7 @@ export var styles = StyleSheet.create({
   cardImage: {
     height: 100,
     width: null,
-    resizeMode: 'center'
+    resizeMode: 'cover'
   },
   cardRow: {
     flexDirection: 'row',

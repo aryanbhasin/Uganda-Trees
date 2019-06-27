@@ -6,7 +6,7 @@ import {CachedImage} from 'react-native-cached-image';
 import {getLocation} from 'UgandaTrees/src/actions';
 import {connect} from 'react-redux'
 import {styles} from './styles'
-
+import imgSources from '../tree_card/images'
 class TreeInfo extends Component {
   
   constructor(props) {
@@ -22,7 +22,7 @@ class TreeInfo extends Component {
     return (
       <View style={{flex: 1}}>
         <View>
-          <Frontal name={this.treeName} image_src={this.treeData.ImageUri}/>
+          <Frontal name={this.treeName}/>
         </View>
         <View style={{flex: 1}}>
           <Tab treeData={this.treeData} treeName={this.treeName} />
@@ -38,11 +38,11 @@ const mapDispatchToProps = {
 
 class Frontal extends Component {
   render() {
-    const {name, image_src} = this.props;
+    const {name} = this.props;
     return (
       <View>
         <View>
-          <CachedImage source={{uri: image_src}} style={styles.frontalImage} />
+          <Image source={imgSources[name.toString().toLowerCase()]} style={styles.frontalImage} />
         </View>
         <View style={styles.frontalContainer}>
           <Text style={styles.frontalName}>{name}</Text>

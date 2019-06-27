@@ -3,9 +3,9 @@ import {View, Text, StyleSheet, Image, TouchableOpacity, StatusBar} from 'react-
 import Icon from 'react-native-vector-icons/Entypo'
 import {connect} from 'react-redux';
 import {CachedImage} from 'react-native-cached-image';
-
+import {firebaseApp} from 'UgandaTrees/App'
 import {addFavorite, deleteFavorite} from '../../actions'
-
+import imgSources from './images'
 import {styles} from './styles'
 
 class TreeCard extends Component {
@@ -29,18 +29,19 @@ class TreeCard extends Component {
     
     const {treeData, isFavorited} = this.props;
     const name = treeData.Names.Primary_Name;
-    image_src = treeData.ImageUri;
     
     return (
  
         <View style={styles.cardContainer}>
           <TouchableOpacity onPress={() => {this.props.navigation.navigate('TreeInfo', {'treeData': treeData})}}>
             <View style={styles.cardImageContainer}>
-              <CachedImage source={{uri: image_src}} style={styles.cardImage} />
+              <Image source={imgSources[name.toString().toLowerCase()]} style={styles.cardImage} />
             </View>
             <View style={styles.cardRow}>
-              <Text style={styles.cardTitle}>{name}</Text>
-              <TouchableOpacity style={{paddingRight: 5}} onPress={() => {this.toggleFavorite(treeData, isFavorited)}}>
+              <View style={{flex: 5.5}}>
+                <Text style={styles.cardTitle}>{name}</Text>
+              </View>
+              <TouchableOpacity style={{flex: 1}} onPress={() => {this.toggleFavorite(treeData, isFavorited)}}>
                 <Icon style={styles.favoriteIcon} name={isFavorited ? 'heart' : 'heart-outlined'} color='tomato' size={26}/>
               </TouchableOpacity>
             </View>
