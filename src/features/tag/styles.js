@@ -37,6 +37,15 @@ export var CapturePicStyles = StyleSheet.create({
     position: 'absolute',
     bottom: 100,
     right: 20
+  },
+  cameraIcon: {
+    shadowColor: 'slategray',
+    shadowOpacity: 0.9,
+    shadowRadius: 5,
+    shadowOffset: {
+      height: 1,
+      width: 0
+    }
   }
 });
 

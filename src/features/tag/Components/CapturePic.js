@@ -41,12 +41,12 @@ class CapturePic extends Component {
           style={styles.imgBG}>
           <View style={styles.crossIcon}>
             <TouchableOpacity onPress={() => this.props.setPicURI('')}>
-              <FeatherIcon name='x' color='white' size={42} />
+              <FeatherIcon name='x' color='white' size={42} style={styles.cameraIcon}/>
             </TouchableOpacity>
           </View>
           <View style={styles.checkIcon}>
             <TouchableOpacity onPress={() => this.acceptedPic(imageUri)}>
-              <FeatherIcon name='check' color='white' size={42} />
+              <FeatherIcon name='check' color='white' size={42} style={styles.cameraIcon} />
             </TouchableOpacity>
           </View>
           
@@ -72,7 +72,7 @@ class CapturePic extends Component {
         />
         <View style={styles.captureIconContainer}>
           <TouchableOpacity onPress={this.handleCapturePic} >
-            <FeatherIcon name='camera' size={42} color='white' />
+            <FeatherIcon name='camera' size={42} color='white' style={styles.cameraIcon} />
           </TouchableOpacity>
         </View>
         

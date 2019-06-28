@@ -16,18 +16,23 @@ export const LOCATION_DENIED = 'LOCATION_DENIED';
 
 // **************************************** ACTION CREATORS FOR SEARCH ****************************************
 
+// uses thunk
 export function getSearchData() {
   return dispatch => {
     var dataRef = firebaseApp.database().ref('tree-data');
     dataRef.on('value', (snapshot) => {
-      var dummyData = [];
+      var initJsonData = {}
+      var initTreeData = [];
       snapshot.forEach((child) => {
-        dummyData.push(child.val())
+        let data = child.val()
+        initJsonData[child.key] = data
+        initTreeData.push(data)
       })
       dispatch ({
         type: GET_SEARCH_DATA,
         payload: {
-          data: dummyData,
+          data: initTreeData,
+          jsonData: initJsonData,
           isLoading: false
         }
       });
@@ -35,14 +40,15 @@ export function getSearchData() {
   }
 }
 
-export function updateSearch(text, dummyData) {
+export function updateSearch(text, initTreeData) {
   let searchData;
   (text === '') 
-    ? searchData = dummyData
-    : searchData = dummyData.filter((card) => {
+    ? searchData = initTreeData
+    : searchData = initTreeData.filter((card) => {
         const searchTerm = text.toUpperCase();
         const name = card.Names.Primary_Name
-        return name.toUpperCase().indexOf(searchTerm) > -1;
+        const scientificName = card.Names.Scientific_Name
+        return (name.toUpperCase().indexOf(searchTerm) > -1) || (scientificName.toUpperCase().indexOf(searchTerm) > -1) ;
       })
   
   return {

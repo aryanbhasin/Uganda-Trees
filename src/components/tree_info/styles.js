@@ -10,13 +10,24 @@ export var styles = StyleSheet.create({
     position: 'absolute',
     bottom: 0,
     left: 12,
+    justifyContent: 'center',
     alignItems: 'flex-start',
   },
   frontalName: {
     color: 'white',
     fontSize: 44,
     fontWeight: '700',
-    paddingBottom: 4
+    lineHeight: 44,
+    // borderWidth: 2
+  },
+  frontalSciName: {
+    color: 'white',
+    fontSize: 22,
+    fontWeight: '700',
+    fontStyle: 'italic',
+    marginBottom: 5,
+    // borderWidth: 2,
+    // borderColor: 'orange'
   },
   bodyContainer: {
     marginVertical: 15,

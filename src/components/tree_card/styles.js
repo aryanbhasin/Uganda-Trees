@@ -36,11 +36,15 @@ export var styles = StyleSheet.create({
     alignItems: 'center'
   },
   cardTitle: {
-    padding: 5,
     fontWeight: 'bold',
-    padding: 10,
     fontSize: 22,
     color: 'black',
+  },
+  cardSubtitle: {
+    fontSize: 16,
+    color: 'slategray',
+    fontStyle: 'italic',
+    fontWeight: '400'
   },
   favoriteIcon: {
     padding: 4,

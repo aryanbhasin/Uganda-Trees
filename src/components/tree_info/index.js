@@ -15,14 +15,14 @@ class TreeInfo extends Component {
     
     this.treeData = this.props.navigation.getParam('treeData');
     this.treeName = this.treeData.Names.Primary_Name
-
+    this.scientificName = this.treeData.Names.Scientific_Name;
   }
 
   render() {
     return (
       <View style={{flex: 1}}>
         <View>
-          <Frontal name={this.treeName}/>
+          <Frontal name={this.treeName} sciName={this.scientificName}/>
         </View>
         <View style={{flex: 1}}>
           <Tab treeData={this.treeData} treeName={this.treeName} />
@@ -38,7 +38,7 @@ const mapDispatchToProps = {
 
 class Frontal extends Component {
   render() {
-    const {name} = this.props;
+    const {name, sciName} = this.props;
     return (
       <View>
         <View>
@@ -46,6 +46,7 @@ class Frontal extends Component {
         </View>
         <View style={styles.frontalContainer}>
           <Text style={styles.frontalName}>{name}</Text>
+          <Text style={styles.frontalSciName}>{sciName}</Text>
         </View>
       </View>
       

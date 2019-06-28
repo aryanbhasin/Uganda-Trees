@@ -12,3 +12,13 @@ export default class Spinner extends Component {
   }
 }
 
+export class SpinnerMini extends Component {
+  render() {
+    return (
+      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <Progress.CircleSnail color={['red', 'black', '#ffd700']} thickness={2} size={29} duration={700} spinDuration={2100} />
+      </View>
+    );
+  }
+}
+

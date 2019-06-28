@@ -118,9 +118,9 @@ class AddTag extends Component {
           <View style={styles.buttonView}>
             <Button title="Submit Tag" onPress={() => this.submitTag(species, coords, imageUri)}/>
           </View>
-          <View style={styles.buttonView}>
+          {/* <View style={styles.buttonView}>
             <Button title="Tag Backup" onPress={() => this.uploadTagInfo(species, coords, uuidv1(), 'temp URL')}/>
-          </View>
+          </View> */}
         </View>
         {this.state.uploadingTag && (
           <View style={{...StyleSheet.absoluteFill}}>

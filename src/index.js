@@ -56,7 +56,7 @@ const RootTabNav = createBottomTabNavigator(
     }
   },
   {
-    initialRouteName: 'Tag',
+    initialRouteName: 'Explore',
     tabBarOptions: {
       activeTintColor: 'rgb(220, 58, 28)',
       labelStyle: {

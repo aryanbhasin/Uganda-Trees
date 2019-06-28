@@ -8,15 +8,16 @@ import {SCREEN_WIDTH, SCREEN_HEIGHT} from 'UgandaTrees/src/styles/globalStyles'
 const initialSearchState = {
   searchTerm: '',
   searchResults: null,
-  dummyData: null,
+  initTreeData: null,
   isLoading: true,
+  initJsonData: null,
 }
 
 function search(state = initialSearchState, action) {
   switch (action.type) {
     case GET_SEARCH_DATA:
-      const {data, isLoading} = action.payload
-      return {...state, dummyData: data, isLoading: isLoading, searchResults: data}
+      const {data, isLoading, jsonData} = action.payload
+      return {...state, initTreeData: data, initJsonData: jsonData, isLoading: isLoading, searchResults: data}
     case UPDATE_SEARCH:
       return {...state, searchTerm: action.payload.text, searchResults: action.payload.results};
     default:

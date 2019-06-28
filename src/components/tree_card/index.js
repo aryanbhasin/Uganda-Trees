@@ -29,6 +29,7 @@ class TreeCard extends Component {
     
     const {treeData, isFavorited} = this.props;
     const name = treeData.Names.Primary_Name;
+    const scientificName = treeData.Names.Scientific_Name;
     
     return (
  
@@ -38,8 +39,9 @@ class TreeCard extends Component {
               <Image source={imgSources[name.toString().toLowerCase()]} style={styles.cardImage} />
             </View>
             <View style={styles.cardRow}>
-              <View style={{flex: 5.5}}>
+              <View style={{flex: 5.5, padding: 10}}>
                 <Text style={styles.cardTitle}>{name}</Text>
+                <Text style={styles.cardSubtitle}>{scientificName}</Text>
               </View>
               <TouchableOpacity style={{flex: 1}} onPress={() => {this.toggleFavorite(treeData, isFavorited)}}>
                 <Icon style={styles.favoriteIcon} name={isFavorited ? 'heart' : 'heart-outlined'} color='tomato' size={26}/>
