@@ -24,7 +24,8 @@ class TagMapView extends Component {
         longitude: this.props.longitude,
         latitudeDelta: LAT_DELTA,
         longitudeDelta: LON_DELTA,
-      }} style={styles.map} >
+        }} 
+        style={styles.map} >
         <Marker coordinate={{latitude: latitude, longitude: longitude}}>
           <View>
             <FAIcon name="tree" color='green' size={22} />

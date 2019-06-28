@@ -116,10 +116,13 @@ export function setPicURI(image_uri) {
   }
 }
 
-export function setSpecies(species) {
+export function setSpecies(species, curationRequired) {
   return {
     type: SET_SPECIES,
-    payload: species
+    payload: {
+      species,
+      curationRequired
+    }
   }
 }
 

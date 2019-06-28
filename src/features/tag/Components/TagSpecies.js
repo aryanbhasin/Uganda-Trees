@@ -12,6 +12,10 @@ class TagSpecies extends Component {
   constructor(props) {
     super(props);
     
+    this.state = {
+      speciesSelected: false
+    }
+    
     // populate list with tree names
     this.dropdownList = [];
     if (!!this.props.initTreeData) {
@@ -21,8 +25,21 @@ class TagSpecies extends Component {
   
   renderDropdown() {
     return (
-      <View style={styles.dropdownContainer}>
-        <Dropdown containerStyle={styles.dropdown} label='Select Tree Species' data={this.dropdownList} onChangeText={(value) => this.props.setSpecies(value)} />
+      <View style={styles.inputView}>
+        <View style={styles.dropdownContainer}>
+          <Dropdown containerStyle={styles.dropdownSize} label='Select Tree Species' data={this.dropdownList} onChangeText={(value) => {this.props.setSpecies(value, false); this.setState({speciesSelected: true})}} />
+        </View>
+        <Text style={styles.inputOptionText}>or</Text>
+        <View>
+          <TextField 
+            label='Species Name'
+            ref={(ref) => this.props.getRef(ref)}
+            value={this.props.species}
+            onChangeText={(value) => this.props.setSpecies(value, true)}
+            containerStyle={styles.textinputPos}
+            disabled={this.state.speciesSelected ? true : false}
+          />
+        </View>
       </View>
     );
   }

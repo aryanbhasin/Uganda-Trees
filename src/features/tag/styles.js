@@ -62,11 +62,10 @@ export var AddTagStyles = StyleSheet.create({
     marginBottom: 10
   },
   container_buttons: {
-    flex: 0.5,
+    flex: 0.7,
     flexDirection: 'row',
     justifyContent: 'space-around',
-    alignItems: 'flex-end',
-    marginBottom: 10,
+    alignItems: 'center',
     marginVertical: 5
     
   },
@@ -77,11 +76,28 @@ export var AddTagStyles = StyleSheet.create({
 });
 
 export var TagSpeciesStyles = StyleSheet.create({
+  inputView: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   dropdownContainer: {
     padding: 10,
   },
-  dropdown: {
+  inputOptionText: {
+    fontWeight: 'bold',
+    textAlign: 'center',
+    fontSize: 19,
+    marginBottom: 5
+  },
+  dropdownSize: {
     width: 180
+  },
+  textinputPos: {
+    width: 180,
+    position: 'relative', 
+    bottom: 20
   }
 })
 

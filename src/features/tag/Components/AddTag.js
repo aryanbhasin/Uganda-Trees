@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, View, Platform, ScrollView} from 'react-native';
-import { Button } from 'react-native-elements';
+import { Button } from 'react-native-material-ui';
 import Image from 'react-native-scalable-image';
 import {connect} from 'react-redux';
 import Spinner from 'UgandaTrees/src/components/spinner'
@@ -33,7 +33,8 @@ class AddTag extends Component {
   }
   
   uploadTagInfo(species, coords, tagKey, downloadURL) {
-    var tagListRef = firebaseApp.database().ref('tags/' + species.toLowerCase());
+    var curationRef = this.props.curationRequired ? 'tags-to-curate/' : 'tags/';
+    var tagListRef = firebaseApp.database().ref(curationRef + species.toLowerCase());
     var newTagRef = tagListRef.push();
     newTagRef.set({
         key: tagKey,
@@ -67,7 +68,8 @@ class AddTag extends Component {
     this.setState({uploadingTag: true})
 
     tagKey = uuidv1();
-    var imageRef = firebaseApp.storage().ref('images/' + species.toLowerCase() + `/${tagKey}.jpg`);
+    var curationRef = this.props.curationRequired ? 'images-to-curate/' : 'images/'; 
+    var imageRef = firebaseApp.storage().ref(curationRef + species.toLowerCase() + `/${tagKey}.jpg`);
     const uploadUri = Platform.OS === 'ios' ? imageUri.replace('file://', '') : imageUri;
     
     // Upload Image on Storage
@@ -108,15 +110,17 @@ class AddTag extends Component {
           </View>
           <TagSpecies getRef={this.getRef} />
         </View>
-        <View style={{flex: 4, justifyContent: 'center', alignItems: 'center'}}>
+        <View style={{flex: 3.7, justifyContent: 'center', alignItems: 'center'}}>
             <TagMapView />
         </View>
         <View style={styles.container_buttons}>
           <View style={styles.buttonView}>
-            <Button title="Tag Location" onPress={() => this.tagLocation()}/>
+            <Button primary raised icon='map-pin' iconSet='FontAwesome' text="Tag Location" style={{text: {fontSize: 15}}} 
+              onPress={() => this.tagLocation()}/>
           </View>
           <View style={styles.buttonView}>
-            <Button title="Submit Tag" onPress={() => this.submitTag(species, coords, imageUri)}/>
+            <Button primary raised icon='md-send' iconSet='Ionicons' text="Submit Tag" style={{text: {fontSize: 15}}} 
+              onPress={() => this.submitTag(species, coords, imageUri)}/>
           </View>
           {/* <View style={styles.buttonView}>
             <Button title="Tag Backup" onPress={() => this.uploadTagInfo(species, coords, uuidv1(), 'temp URL')}/>
@@ -136,6 +140,7 @@ const mapStateToProps = (state) => {
   return {
     coords: state.newTagInfo.coords,
     species: state.newTagInfo.species,
+    curationRequired: state.newTagInfo.curationRequired
   }
 }
 

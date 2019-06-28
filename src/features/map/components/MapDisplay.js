@@ -52,7 +52,7 @@ class MapDisplay extends Component {
 
   render() {
     
-    const tempRegion = {
+    const demoRegion = {
       latitude: 0.0617283,
       longitude: 32.4755344,
       latitudeDelta: 0.01,
@@ -62,7 +62,7 @@ class MapDisplay extends Component {
     return(
       <View style={{flex: 1}}>
         <MapView style={styles.map} 
-          region={tempRegion}
+          region={this.props.region}
           showsUserLocation={this.state.markersLoading ? false : true}
           zoomControlEnabled
           onRegionChangeComplete={region => {

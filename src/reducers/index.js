@@ -56,7 +56,8 @@ const initTagInfo = {
     longitude: 100.000000,
   },
   species: '',
-  imageUri: ''
+  imageUri: '',
+  curationRequired: false
 }
 
 function newTagInfo(state = initTagInfo, action) {
@@ -75,7 +76,7 @@ function newTagInfo(state = initTagInfo, action) {
     case SET_PIC_URI:
       return {...state, imageUri: action.payload}
     case SET_SPECIES:
-      return {...state, species: action.payload}
+      return {...state, species: action.payload.species, curationRequired: action.payload.curationRequired}
     default:
       return state;
   }
