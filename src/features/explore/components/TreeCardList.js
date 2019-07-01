@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, ScrollView} from 'react-native';
+import {View, Text, StyleSheet, ScrollView, Linking} from 'react-native';
 import {firebaseApp} from 'UgandaTrees/App'
 import TreeCard from '../../../components/tree_card';
 import {SCREEN_WIDTH, SCREEN_HEIGHT} from 'UgandaTrees/src/styles/globalStyles'
@@ -17,10 +17,24 @@ class TreeCardList extends Component {
     this.props.setMapRegion();
   }
   
+  handleClick() {
+    const url = 'https://www.kcca.go.ug/tree-directory/';
+    Linking.canOpenURL(url).then(() => Linking.openURL(url))
+  }
+  
   render() {               
     if (this.props.dataLoading) {
       return (
         <Spinner />
+      );
+    }
+    
+    if (this.props.searchResults.length < 1) {
+      return (
+        <View style={styles.noResultsContainer}>
+          <Text style={[styles.noResultsText, {fontWeight: 'bold', paddingBottom: 10}]}>No results found.</Text>
+          <Text style={styles.noResultsText}>Try searching on the {<Text style={styles.hyperlink} onPress={() => this.handleClick()}}>Kampala Tree and Palm Directory</Text>} instead</Text>
+        </View>
       );
     }
     return (
@@ -39,8 +53,18 @@ class TreeCardList extends Component {
 }
 
 var styles= StyleSheet.create({
-  cardListScroll: {
-
+  noResultsText: {
+    color: 'darkgrey',
+    textAlign: 'center'
+  },
+  noResultsContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  hyperlink: {
+    textDecorationLine: 'underline', 
+    fontWeight: 'bold'
   }
 });
 

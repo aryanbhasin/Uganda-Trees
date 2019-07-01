@@ -63,4 +63,34 @@ export var styles = StyleSheet.create({
     fontSize: 17,
     textAlign: 'justify',
   },
+  calloutContainer: {
+    width: 110, 
+    height: null,
+  }
+  calloutButton: {
+    borderRadius: 10, 
+    borderWidth: 1, 
+    color: 'cornflowerblue', 
+    borderColor: 'cornflowerblue', 
+    padding: 5,
+  },
+  findNearestTreeContainer: {
+    flex: 0.2, 
+    justifyContent: 'center', 
+    alignItems: 'center'
+  },
+  findNearestTreeButton: {
+    width: 200, 
+    margin: 5,
+  },
+  noTagsContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  noTagsText: {
+    color: 'darkgrey',
+    textAlign: 'center',
+    fontWeight: 'bold'
+  }
 });

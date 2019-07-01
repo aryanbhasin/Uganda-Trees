@@ -79,11 +79,11 @@ class TagMap extends Component {
         <View>
           <FA5Icon name="tree" color="darkgreen" size={20}/>
         </View>
-        <Callout style={{width: 110, height: null}}>
+        <Callout style={styles.calloutContainer}>
           <View style={{justifyContent: 'center', alignItems: 'center'}}>
             <Image width={50} source={{uri: marker.imageUri}}/>
             <CalloutSubview onPress={() => getTreeDirections(this.props.currPos, marker.coords)} style={{marginTop: 5}}>
-              <Text style={{borderRadius: 10, borderWidth: 1, color: 'cornflowerblue', borderColor: 'cornflowerblue', padding: 5}}>Get Directions</Text>
+              <Text style={styles.calloutButton}>Get Directions</Text>
             </CalloutSubview>
           </View>
         </Callout>
@@ -95,6 +95,14 @@ class TagMap extends Component {
     
     if (this.state.markersLoading) {
       return (<Spinner />);
+    }
+    
+    if (!this.state.markersLoading && (this.state.markers.length < 1)) {
+      return (
+        <View style={styles.noTagsContainer}>
+          <Text style={styles.noTagsText}>Be the first one to tag this tree!</Text>
+        </View>
+      );
     }
     
     return (
@@ -109,9 +117,9 @@ class TagMap extends Component {
             {this.state.markers.map(marker => this.renderMarker(marker))}
           </MapView>
         </View>
-        <View style={{flex: 0.2, justifyContent: 'center', alignItems: 'center'}}>
+        <View style={styles.findNearestTreeContainer}>
           <Button 
-            containerStyle={{width: 200, margin: 5}} 
+            containerStyle={styles.findNearestTreeButton} 
             title="Find nearest tree" raised type="outline" 
             onPress={ () => (this.state.closestTreeKey !== null ? this.closestTreeRef.showCallout() : this.findNearestTree()) }/>
         </View>
