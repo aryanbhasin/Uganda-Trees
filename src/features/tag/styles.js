@@ -30,12 +30,12 @@ export var CapturePicStyles = StyleSheet.create({
   },
   crossIcon: {
     position: 'absolute',
-    bottom: 100,
+    bottom: 0,
     left: 20
   },
   checkIcon: {
     position: 'absolute',
-    bottom: 100,
+    bottom: 0,
     right: 20
   },
   cameraIcon: {
@@ -51,7 +51,7 @@ export var CapturePicStyles = StyleSheet.create({
 
 export var AddTagStyles = StyleSheet.create({
   container_top: {
-    flex: 2,
+    flex: 2.2,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'flex-start'

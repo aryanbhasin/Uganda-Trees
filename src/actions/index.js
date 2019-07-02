@@ -20,18 +20,24 @@ export const FIREBASE_DISCONNECTED = 'FIREBASE_DISCONNECTED';
 // uses thunk
 export function getSearchData() {
   return dispatch => {
+    var connectedRef = firebaseApp.database().ref(".info/connected");  
+    var dataRef = firebaseApp.database().ref('tree-data');
     
-    firebaseApp.child('.info/connected').once('value', function(connectedSnap) {
-      if (connectedSnap.val() !== true) {
-        // we're disconnected
-        dispatch ({
-          type: FIREBASE_DISCONNECTED
-        })
+    var isConnected;
+    connectedRef.on("value", function(snap) {
+      if (snap.val() === true) {
+        isConnected = true;
+      } else {
+        isConnected = false;
       }
     });
     
-    var dataRef = firebaseApp.database().ref('tree-data');
     dataRef.on('value', (snapshot) => {
+      
+      if (!isConnected) {
+        dispatch({type: FIREBASE_DISCONNECTED})
+      }
+      
       var initJsonData = {}
       var initTreeData = [];
       snapshot.forEach((child) => {

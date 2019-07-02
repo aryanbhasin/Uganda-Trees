@@ -71,7 +71,7 @@ class ShareApp extends Component {
       let appURL = snapshot.val();
       let shareOptions = {
         url: appURL,
-        title: 'Share Uganda\'s Trees'
+        title: 'Share Uganda\'s Trees',
       }
       this.setState({shareOptions: shareOptions})
     })

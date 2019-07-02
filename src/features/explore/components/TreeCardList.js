@@ -37,7 +37,7 @@ class TreeCardList extends Component {
         description: "Please connect to the Internet to use this app",
         type: "danger",
         icon: "warning",
-        duration: 1000
+        duration: 2000
       });
     }
     

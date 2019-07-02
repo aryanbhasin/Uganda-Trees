@@ -111,7 +111,7 @@ class AddTag extends Component {
           </View>
           <TagSpecies getRef={this.getRef} />
         </View>
-        <View style={{flex: 3.7, justifyContent: 'center', alignItems: 'center'}}>
+        <View style={{flex: 3.5, justifyContent: 'center', alignItems: 'center'}}>
             <TagMapView />
         </View>
         <View style={styles.container_buttons}>

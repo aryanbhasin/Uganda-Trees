@@ -36,9 +36,8 @@ class CapturePic extends Component {
     
     if (imageUri !== '') {
       return (
-        <ImageBackground 
-          source={{uri: imageUri}} 
-          style={styles.imgBG}>
+        <View style={styles.container}>
+          <ImageBackground source={{uri: imageUri}} style={styles.imgBG} />        
           <View style={styles.crossIcon}>
             <TouchableOpacity onPress={() => this.props.setPicURI('')}>
               <FeatherIcon name='x' color='white' size={42} style={styles.cameraIcon}/>
@@ -49,8 +48,7 @@ class CapturePic extends Component {
               <FeatherIcon name='check' color='white' size={42} style={styles.cameraIcon} />
             </TouchableOpacity>
           </View>
-          
-        </ImageBackground>
+        </View>
       );
     }
     
