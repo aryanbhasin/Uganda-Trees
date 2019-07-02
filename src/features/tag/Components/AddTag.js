@@ -45,16 +45,17 @@ class AddTag extends Component {
         else {
           showMessage({
             message: "Tag uploaded",
+            description: "We'll verify the tag and approve it as soon as possible",
             type: "success",
             icon: "success",
-            duration: 1800
+            duration: 2600
           });
           setTimeout(() => {
             this.props.setPicURI('');
             // clears the text input field after submitting a tag
             this.textRef.clear();
             this.props.navigation.navigate('CapturePic')
-          }, 1800);
+          }, 2600);
           this.setState({uploadingTag: false})
         }
       }

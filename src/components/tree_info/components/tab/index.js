@@ -80,7 +80,7 @@ class Tab extends Component {
         initialLayout={{ width: SCREEN_WIDTH}}
         renderTabBar={(props) => this.renderTabBar(props)}
         lazy={true}
-        swipeEnabled={false}
+        swipeEnabled={true}
         renderLazyPlaceholder={() => (
           <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
             <Spinner />

@@ -53,12 +53,12 @@ const RootTabNav = createBottomTabNavigator(
           <FAIcon name="heart" size={17} color={tintColor} />
         )
       }
-    }
+    },
   },
   {
     initialRouteName: 'Explore',
     tabBarOptions: {
-      activeTintColor: 'rgb(220, 58, 28)',
+      activeTintColor: 'rgb(221, 59, 29)',
       labelStyle: {
         fontSize: 12,
         fontWeight: '500',

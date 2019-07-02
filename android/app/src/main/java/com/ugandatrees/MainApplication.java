@@ -3,6 +3,7 @@ package com.ugandatrees;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import cl.json.RNSharePackage;
 import com.dylanvann.fastimage.FastImageViewPackage;
 import fr.bamlab.rnimageresizer.ImageResizerPackage;
 import com.reactnativecommunity.netinfo.NetInfoPackage;
@@ -34,6 +35,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNSharePackage(),
             new FastImageViewPackage(),
             new ImageResizerPackage(),
             new NetInfoPackage(),

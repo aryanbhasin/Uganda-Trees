@@ -32,8 +32,8 @@ class TreeCardList extends Component {
     if (this.props.searchResults.length < 1) {
       return (
         <View style={styles.noResultsContainer}>
-          <Text style={[styles.noResultsText, {fontWeight: 'bold', paddingBottom: 10}]}>No results found.</Text>
-          <Text style={styles.noResultsText}>Try searching on the {<Text style={styles.hyperlink} onPress={() => this.handleClick()}}>Kampala Tree and Palm Directory</Text>} instead</Text>
+          <Text style={[styles.noResultsText, {fontWeight: 'bold', paddingBottom: 10}]}>No results found</Text>
+          <Text style={styles.noResultsText}>Try searching on the {(<Text style={styles.hyperlink} onPress={() => this.handleClick()}>Kampala Tree and Palm Directory</Text>)} instead!</Text>
         </View>
       );
     }
@@ -55,7 +55,8 @@ class TreeCardList extends Component {
 var styles= StyleSheet.create({
   noResultsText: {
     color: 'darkgrey',
-    textAlign: 'center'
+    textAlign: 'center',
+    marginHorizontal: 15,
   },
   noResultsContainer: {
     flex: 1,

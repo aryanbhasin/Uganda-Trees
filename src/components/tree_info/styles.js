@@ -66,7 +66,7 @@ export var styles = StyleSheet.create({
   calloutContainer: {
     width: 110, 
     height: null,
-  }
+  },
   calloutButton: {
     borderRadius: 10, 
     borderWidth: 1, 

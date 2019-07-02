@@ -91,13 +91,22 @@ export var TagSpeciesStyles = StyleSheet.create({
     fontSize: 19,
     marginBottom: 5
   },
+  notsureText: {
+    textAlign: 'center',
+    fontSize: 11,
+    color: 'dimgrey',
+    marginHorizontal: 5,
+    width: 180,
+    position: 'relative',
+    bottom: 20,
+  },
   dropdownSize: {
     width: 180
   },
   textinputPos: {
     width: 180,
     position: 'relative', 
-    bottom: 20
+    bottom: 20,
   }
 })
 

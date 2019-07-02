@@ -23,11 +23,11 @@ class TagSpecies extends Component {
     }
   }
   
-  renderDropdown() {
+  renderInputs() {
     return (
       <View style={styles.inputView}>
         <View style={styles.dropdownContainer}>
-          <Dropdown containerStyle={styles.dropdownSize} label='Select Tree Species' data={this.dropdownList} onChangeText={(value) => {this.props.setSpecies(value, false); this.setState({speciesSelected: true})}} />
+          <Dropdown containerStyle={styles.dropdownSize} label='Select Tree Species' data={this.dropdownList} onChangeText={(value) => {this.props.setSpecies(value, true); this.setState({speciesSelected: true})}} />
         </View>
         <Text style={styles.inputOptionText}>or</Text>
         <View>
@@ -40,6 +40,7 @@ class TagSpecies extends Component {
             disabled={this.state.speciesSelected ? true : false}
           />
         </View>
+        <Text style={styles.notsureText}>Tag the tree as {(<Text style={{fontWeight: 'bold'}}>Not Sure</Text>)} if you're unsure about its species</Text>
       </View>
     );
   }
@@ -48,7 +49,7 @@ class TagSpecies extends Component {
   render() {
     return (
       <View>
-        {this.renderDropdown()}
+        {this.renderInputs()}
       </View>
     );
   }
