@@ -5,6 +5,8 @@ import TreeCard from '../../../components/tree_card';
 import {SCREEN_WIDTH, SCREEN_HEIGHT} from 'UgandaTrees/src/styles/globalStyles'
 import Spinner from '../../../components/spinner'
 import {connect} from 'react-redux';
+import {showMessage} from 'react-native-flash-message';
+
 import {getSearchData, setMapRegion} from 'UgandaTrees/src/actions'
 
 class TreeCardList extends Component {
@@ -27,6 +29,16 @@ class TreeCardList extends Component {
       return (
         <Spinner />
       );
+    }
+    
+    if (this.props.disconnected) {
+      showMessage({
+        message: "Network Error",
+        description: "Please connect to the Internet to use this app",
+        type: "danger",
+        icon: "warning",
+        duration: 1000
+      });
     }
     
     if (this.props.searchResults.length < 1) {
@@ -72,6 +84,7 @@ var styles= StyleSheet.create({
 const mapStateToProps = (state) => {
   return {
     searchResults: state.search.searchResults,
+    disconnected: state.search.disconnected,
     dataLoading: state.search.isLoading,
     favList: state.favorites.favList,
   }

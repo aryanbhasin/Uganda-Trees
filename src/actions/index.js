@@ -13,12 +13,23 @@ export const SET_SPECIES = 'SET_SPECIES';
 export const SET_REGION = 'SET_REGION';
 export const CHANGE_REGION = 'CHANGE_REGION';
 export const LOCATION_DENIED = 'LOCATION_DENIED';
+export const FIREBASE_DISCONNECTED = 'FIREBASE_DISCONNECTED';
 
 // **************************************** ACTION CREATORS FOR SEARCH ****************************************
 
 // uses thunk
 export function getSearchData() {
   return dispatch => {
+    
+    firebaseApp.child('.info/connected').once('value', function(connectedSnap) {
+      if (connectedSnap.val() !== true) {
+        // we're disconnected
+        dispatch ({
+          type: FIREBASE_DISCONNECTED
+        })
+      }
+    });
+    
     var dataRef = firebaseApp.database().ref('tree-data');
     dataRef.on('value', (snapshot) => {
       var initJsonData = {}
@@ -36,7 +47,7 @@ export function getSearchData() {
           isLoading: false
         }
       });
-    })
+    })  
   }
 }
 

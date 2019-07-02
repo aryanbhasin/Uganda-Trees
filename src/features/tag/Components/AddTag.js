@@ -4,7 +4,7 @@ import { Button } from 'react-native-material-ui';
 import Image from 'react-native-scalable-image';
 import {connect} from 'react-redux';
 import Spinner from 'UgandaTrees/src/components/spinner'
-import {showMessage, hideMessage} from 'react-native-flash-message';
+import {showMessage} from 'react-native-flash-message';
 import RNFetchBlob from 'rn-fetch-blob'
 
 import TagSpecies from './TagSpecies';

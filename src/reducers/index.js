@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux';
-import {ADD_FAVORITE, DELETE_FAVORITE, UPDATE_SEARCH, GET_SEARCH_DATA} from '../actions'
+import {ADD_FAVORITE, DELETE_FAVORITE, UPDATE_SEARCH, GET_SEARCH_DATA, FIREBASE_DISCONNECTED} from '../actions'
 import {SET_PIC_URI, GET_LOCATION, GEOLOCATION_DENIED, RESET_LOCATION, SET_SPECIES} from '../actions'
 import {SET_REGION, LOCATION_DENIED, CHANGE_REGION} from '../actions'
 import {SCREEN_WIDTH, SCREEN_HEIGHT} from 'UgandaTrees/src/styles/globalStyles'
@@ -11,6 +11,7 @@ const initialSearchState = {
   initTreeData: null,
   isLoading: true,
   initJsonData: null,
+  disconnected: false
 }
 
 function search(state = initialSearchState, action) {
@@ -20,6 +21,8 @@ function search(state = initialSearchState, action) {
       return {...state, initTreeData: data, initJsonData: jsonData, isLoading: isLoading, searchResults: data}
     case UPDATE_SEARCH:
       return {...state, searchTerm: action.payload.text, searchResults: action.payload.results};
+    case FIREBASE_DISCONNECTED:
+      return {...state, disconnected: true};
     default:
       return state;
   }
