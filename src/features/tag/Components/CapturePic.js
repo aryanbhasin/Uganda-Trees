@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View, TouchableOpacity, ImageBackground} from 'react-native';
+import {StyleSheet, Text, View, TouchableOpacity, ImageBackground, PermissionsAndroid, Platform} from 'react-native';
 import {RNCamera} from 'react-native-camera';
 import FAIcon from 'react-native-vector-icons/FontAwesome'
 import FeatherIcon from 'react-native-vector-icons/Feather'
@@ -23,9 +23,37 @@ class CapturePic extends Component {
     }
   }
   
+  requestAndroidGeolocation = async() => {
+    try {
+      const granted = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+        {
+          title: 'Uganda\'s Trees Geolocation Permission',
+          message:
+            'Uganda\'s Trees needs to access your location ' +
+            'so you can tag trees',
+          buttonNeutral: 'Ask Me Later',
+          buttonNegative: 'Cancel',
+          buttonPositive: 'OK',
+        },
+      );
+      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+        console.log('Permission granted');
+      } else {
+        console.log('Permission denied');
+      }
+    } catch (err) {
+      console.warn(err);
+    }
+  }
+  
   acceptedPic(imageUri) {
     ImageResizer.createResizedImage(imageUri, 300, 500, 'JPEG', 40).then(response => {
-      navigator.geolocation.requestAuthorization();
+      if (Platform.OS === 'android') {
+        this.requestAndroidGeolocation()
+      } else {
+        navigator.geolocation.requestAuthorization();
+      }
       this.props.navigation.navigate('AddTag', {imageUri: response.uri})
     })
   }

@@ -8,7 +8,6 @@ import com.dylanvann.fastimage.FastImageViewPackage;
 import fr.bamlab.rnimageresizer.ImageResizerPackage;
 import com.reactnativecommunity.netinfo.NetInfoPackage;
 import com.RNFetchBlob.RNFetchBlobPackage;
-import com.RNFetchBlob.RNFetchBlobPackage;
 import com.swmansion.reanimated.ReanimatedPackage;
 import com.airbnb.android.react.maps.MapsPackage;
 import com.swmansion.rnscreens.RNScreensPackage;
@@ -39,7 +38,6 @@ public class MainApplication extends Application implements ReactApplication {
             new FastImageViewPackage(),
             new ImageResizerPackage(),
             new NetInfoPackage(),
-            new RNFetchBlobPackage(),
             new RNFetchBlobPackage(),
             new ReanimatedPackage(),
             new MapsPackage(),

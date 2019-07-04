@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
-import {Text, View, StyleSheet, TouchableOpacity, Image} from 'react-native';
+import {Text, View, StyleSheet, TouchableOpacity, Image, ScrollView} from 'react-native';
 import Ionicon from 'react-native-vector-icons/Ionicons'
 import Share from 'react-native-share';
 import Modal from 'react-native-modal'
 import {Button} from 'react-native-material-ui'
+import {SCREEN_HEIGHT} from 'UgandaTrees/src/styles/globalStyles'
 
 import {firebaseApp} from 'UgandaTrees/App'
 
@@ -19,10 +20,13 @@ export default class InfoModal extends Component {
               <Ionicon name='ios-close' color='dimgrey' size={38}/>
             </TouchableOpacity>
           </View>
-          <About />
-          <Features />
-          <Acknowledgements />
-          <ShareApp />  
+          <ScrollView showsVerticalScrollIndicator={false}>
+            <About />
+            <Features />
+            <ShareApp />
+            <Supporters />
+            <Acknowledgements />
+          </ScrollView>
         </View>
       </Modal>
     );
@@ -90,7 +94,7 @@ class ShareApp extends Component {
   
   render() {
     return (
-      <View style={[styles.sectionContainer, {alignSelf: 'center', marginTop: 5}]}>
+      <View style={[styles.sectionContainer, {alignSelf: 'center', marginBottom: 5}]}>
         <Button raised text="Share the app" icon='share' iconSet='MaterialCommunityIcons' style={{text: {fontSize: 15, color: 'cornflowerblue'}}}
           onPress={() => this.toggleShare()}
         />
@@ -113,12 +117,29 @@ function Acknowledgements() {
 
 }
 
+function Supporters() {
+  return (
+    <View style={styles.sectionContainer}>
+      <Text style={styles.header}>Supported By</Text>
+      <View style={{flexDirection: 'row'}}>
+        <View style={styles.supporterContainer}>
+          <Image source={require('UgandaTrees/src/assets/icons/dsl-logo.png')} style={styles.supporterLogo} />
+          <Text style={styles.text}>Digital Solutions</Text>
+        </View>
+        <View style={styles.supporterContainer}>
+          <Image source={require('UgandaTrees/src/assets/icons/arocha-logo.png')} style={styles.supporterLogo} />
+          <Text style={styles.text}>A Rocha Uganda</Text>
+        </View>
+      </View>
+    </View>
+  );
+
+}
+
 const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
+    height: SCREEN_HEIGHT * 0.8,
     paddingHorizontal: 25,
     paddingVertical: 20,
     borderRadius: 14
@@ -157,6 +178,16 @@ const styles = StyleSheet.create({
     color: 'dimgray',
     fontWeight: '600',
     fontSize: 23,
+  },
+  supporterContainer: {
+    flex: 1,
+    alignItems: 'center',
+    paddingHorizontal: 5
+  },
+  supporterLogo: {
+    flex: 1,
+    height: 60,
+    resizeMode: 'contain'
   },
   biblio: {
     color: 'dimgrey',

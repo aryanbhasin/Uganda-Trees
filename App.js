@@ -18,6 +18,11 @@ export const firebaseApp = firebase.initializeApp(firebaseConfig);
 
 export default class App extends Component {
   
+  constructor() {
+    super();
+    console.ignoredYellowBox = ['Setting a timer'];
+  }
+  
   render() {
     return (
       <EntryPoint />

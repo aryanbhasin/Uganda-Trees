@@ -19,6 +19,7 @@ export var styles = StyleSheet.create({
     },
     shadowColor: 'slategray',
     shadowOpacity: 0.4,
+    elevation: 6
   },
   cardImageContainer: {
     overflow: 'hidden', 
