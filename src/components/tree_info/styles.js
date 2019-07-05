@@ -74,14 +74,22 @@ export var styles = StyleSheet.create({
     borderColor: 'cornflowerblue', 
     padding: 5,
   },
-  findNearestTreeContainer: {
-    flex: 0.2, 
-    justifyContent: 'center', 
-    alignItems: 'center'
-  },
   findNearestTreeButton: {
-    width: 200, 
-    margin: 5,
+    position: 'absolute',
+    bottom: 0,
+    alignSelf: 'center',
+    marginBottom: 7,
+    borderRadius: 13,
+    paddingHorizontal: 3,
+    backgroundColor: 'white',
+    shadowOffset: {
+      width: 1,
+      height: 1,
+    },
+    shadowColor: 'slategray',
+    shadowOpacity: 0.4,
+    elevation: 5
+    
   },
   noTagsContainer: {
     flex: 1,

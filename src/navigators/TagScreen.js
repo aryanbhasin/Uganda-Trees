@@ -7,6 +7,9 @@ export default createStackNavigator(
   {
     CapturePic: {
       screen: Tag,
+      navigationOptions: {
+        title: "Capture"
+      }
     },
     AddTag: {
       screen: AddTag

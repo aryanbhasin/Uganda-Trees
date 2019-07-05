@@ -139,7 +139,7 @@ function Supporters() {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
-    height: SCREEN_HEIGHT * 0.8,
+    height: SCREEN_HEIGHT * 0.7,
     paddingHorizontal: 25,
     paddingVertical: 20,
     borderRadius: 14

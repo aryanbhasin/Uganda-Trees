@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Text, View, StyleSheet, Platform} from 'react-native'
+import {Text, View, StyleSheet, Platform, TouchableOpacity} from 'react-native'
 import {Marker, Callout, CalloutSubview} from 'react-native-maps'
 import {firebaseApp} from 'UgandaTrees/App';
 import FastImage from 'react-native-fast-image'
@@ -62,6 +62,33 @@ class TreeMarker extends Component {
     }
   }
   
+  returnCalloutSubview = (marker) => {
+    // CalloutSubview only on iOS
+    if (Platform.OS === 'ios') {
+      return (
+        <View>
+          <CalloutSubview onPress={() => this.openTreeInfo(marker.name.toString())} style={{padding: 5}}>
+            <Text style={styles.calloutButtonText}>More Info</Text>
+          </CalloutSubview>
+          <CalloutSubview onPress={() => this.openTreeDirections(marker.coords)} style={{padding: 5}}>
+            <Text style={styles.calloutButtonText}>Directions</Text>
+          </CalloutSubview>
+        </View>
+      );
+    }
+    // else, android
+    return (
+      <View>
+        <TouchableOpacity onPress={() => this.openTreeInfo(marker.name.toString())} style={{padding: 5}}>
+          <Text style={styles.calloutButtonText}>More Info</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => this.openTreeDirections(marker.coords)} style={{padding: 5}}>
+          <Text style={styles.calloutButtonText}>Directions</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  }
+  
   render() {
     
     const {marker} = this.props;
@@ -87,12 +114,7 @@ class TreeMarker extends Component {
             </View>
             <View style={styles.calloutInfoView}>
               <Text style={styles.calloutMarkerName}>{marker.name.charAt(0).toUpperCase() + marker.name.slice(1)}</Text>
-              <CalloutSubview onPress={() => this.openTreeInfo(marker.name.toString())} style={{padding: 5}}>
-                <Text style={styles.calloutButtonText}>More Info</Text>
-              </CalloutSubview>
-              <CalloutSubview onPress={() => this.openTreeDirections(marker.coords)} style={{padding: 5}}>
-                <Text style={styles.calloutButtonText}>Directions</Text>
-              </CalloutSubview>
+              {this.returnCalloutSubview(marker)}
             </View>
           </View>
         </Callout>

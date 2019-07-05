@@ -44,6 +44,8 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>This app uses your camera to capture a photo of the tree you're tagging</string>
+	<key>NSLocationUsageDescription</key>
+	<string>This app uses your location to tag a tree and view nearby trees</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>This app uses your location to tag a tree and view nearby trees</string>
 	<key>UIAppFonts</key>

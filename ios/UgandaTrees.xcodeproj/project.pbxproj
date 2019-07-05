@@ -15,6 +15,7 @@
 		00E356F31AD99517003FC87E /* UgandaTreesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* UgandaTreesTests.m */; };
 		029F0D1CA7AC44EB8E768EE8 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8350BD61615044A0B64588C9 /* Entypo.ttf */; };
 		0521FF917C2E4B39AB8742DF /* libAirMaps.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 59AA8EA9AEE14DCC81B988EF /* libAirMaps.a */; };
+		053FA5C27E8640F994ABE973 /* OpenSans-Extrabold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F62A27F87AAC446A988411D8 /* OpenSans-Extrabold.ttf */; };
 		11D1A2F320CAFA9E000508D9 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C398B91ACF4ADC00677621 /* libRCTLinking.a */; };
 		139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139105C11AF99BAD00B5F7CC /* libRCTSettings.a */; };
@@ -557,6 +558,7 @@
 		F236750CE6CB4BCAA3AE8C17 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		F2E58ECFB2604B3EAE778925 /* Open Sans.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Open Sans.ttf"; path = "../src/assets/fonts/Open Sans.ttf"; sourceTree = "<group>"; };
 		F356DC67A5FB4CB4BCC90EDA /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = "<group>"; };
+		F62A27F87AAC446A988411D8 /* OpenSans-Extrabold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-Extrabold.ttf"; path = "../src/assets/fonts/OpenSans-Extrabold.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1005,6 +1007,7 @@
 				2E37168DA2834786865CF27C /* Open Sans Bold.ttf */,
 				8D0F2F85284D4A45A79C8880 /* Open Sans Extrabold.ttf */,
 				F2E58ECFB2604B3EAE778925 /* Open Sans.ttf */,
+				F62A27F87AAC446A988411D8 /* OpenSans-Extrabold.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1095,11 +1098,24 @@
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = GK4FRAG4N2;
+						ProvisioningStyle = Manual;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = GK4FRAG4N2;
 						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.GameCenter.iOS = {
+								enabled = 0;
+							};
+							com.apple.InAppPurchase = {
+								enabled = 0;
+							};
+							com.apple.InterAppAudio = {
+								enabled = 0;
+							};
+						};
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -1658,6 +1674,7 @@
 				592FA4C9B5D14C88AC352053 /* Open Sans Bold.ttf in Resources */,
 				B3419329396645B289D171A2 /* Open Sans Extrabold.ttf in Resources */,
 				447E7B9CB8B741B6A0EC9A40 /* Open Sans.ttf in Resources */,
+				053FA5C27E8640F994ABE973 /* OpenSans-Extrabold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1776,6 +1793,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = GK4FRAG4N2;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -1818,6 +1837,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UgandaTrees.app/UgandaTrees";
 			};
 			name = Debug;
@@ -1826,7 +1846,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = GK4FRAG4N2;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
@@ -1865,6 +1888,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UgandaTrees.app/UgandaTrees";
 			};
 			name = Release;

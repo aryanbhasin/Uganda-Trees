@@ -73,6 +73,10 @@ const AppContainer = createAppContainer(RootTabNav);
 
 class EntryPoint extends Component {
   
+  constructor() {
+    super();
+    console.ignoredYellowBox = ['Setting a timer'];
+  }
   
   render() {
     

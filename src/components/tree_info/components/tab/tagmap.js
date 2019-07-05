@@ -1,15 +1,15 @@
 import React, {Component} from 'react';
-import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
+import {Text, View, StyleSheet, TouchableOpacity, Platform} from 'react-native';
 import {styles} from '../../styles';
 import MapView, {Marker, Callout, CalloutSubview} from 'react-native-maps';
 import {connect} from 'react-redux';
 import {firebaseApp} from 'UgandaTrees/App';
-import Image from 'react-native-scalable-image';
 import Spinner from 'UgandaTrees/src/components/spinner'
 import {getDistance} from 'geolib'
 import getDirections from 'react-native-google-maps-directions';
 import {Button} from 'react-native-elements';
-import FA5Icon from 'react-native-vector-icons/FontAwesome5';
+
+import TagMarker from './tag-marker'
 
 const LAT_DELTA = 0.0222;
 const LON_DELTA = 0.0222; // to render a square MapView
@@ -28,6 +28,7 @@ class TagMap extends Component {
       markers: [],
       markersLoading: true,
       closestTreeKey: null,
+      closestTreeCoords: null,
       region: {
         latitude: currPos.latitude,
         longitude: currPos.longitude,
@@ -44,52 +45,31 @@ class TagMap extends Component {
     var tagListRef = firebaseApp.database().ref('tags/' + treeName.toLowerCase());
     tagListRef.once('value').then((snap) => {
       var markers = [];
+      var closest;
+      var closestDist = Infinity;
       snap.forEach((child) => {
-        markers.push(child.val()); 
+        let currMarker = child.val();
+        // find nearest tree
+        const dist = getDistance(currPos, currMarker.coords);
+        if (dist < closestDist) {
+          closestDist = dist;
+          closest = currMarker;
+        }
+        markers.push(currMarker); 
        });
-      this.setState({markers: markers, markersLoading: false});
+      this.setState({markers: markers, markersLoading: false, closestTreeKey: closest.key, closestTreeCoords: closest.coords});
     });
-  }
-  
-  findNearestTree() {
-    // finding nearest tree
-    var closest;
-    var closestDist = Infinity;
-    let {currPos} = this.props;
-    this.state.markers.map((marker) => {
-      const dist = getDistance(currPos, marker.coords);
-      if (dist < closestDist) {
-        closestDist = dist;
-        closest = marker;
-      }
-    });
-    this.setState({closestTreeKey: closest.key})
   }
   
   getTreeRef = (ref) => {
     this.closestTreeRef = ref;
-    if (this.closestTreeRef) {
-      this.closestTreeRef.showCallout();
-    }
   }
   
-  renderMarker(marker) {
+  renderMarker(marker)  {
     return (
-      <Marker coordinate={marker.coords} key={marker.key} ref={(marker.key === this.state.closestTreeKey) ? this.getTreeRef : null }>
-        <View>
-          <FA5Icon name="tree" color="darkgreen" size={20}/>
-        </View>
-        <Callout style={styles.calloutContainer}>
-          <View style={{justifyContent: 'center', alignItems: 'center'}}>
-            <Image width={50} source={{uri: marker.imageUri}}/>
-            <CalloutSubview onPress={() => getTreeDirections(this.props.currPos, marker.coords)} style={{marginTop: 5}}>
-              <Text style={styles.calloutButton}>Get Directions</Text>
-            </CalloutSubview>
-          </View>
-        </Callout>
-      </Marker>
+      <TagMarker marker={marker} currPos={this.props.currPos} key={marker.key} closestTreeKey={this.state.closestTreeKey} getTreeRef={this.getTreeRef} />
     );
-  } 
+  }
   
   render() {
     
@@ -116,12 +96,8 @@ class TagMap extends Component {
             ref={(ref) => { this.mapRef = ref }}>
             {this.state.markers.map(marker => this.renderMarker(marker))}
           </MapView>
-        </View>
-        <View style={styles.findNearestTreeContainer}>
-          <Button 
-            containerStyle={styles.findNearestTreeButton} 
-            title="Find nearest tree" raised type="outline" 
-            onPress={ () => (this.state.closestTreeKey !== null ? this.closestTreeRef.showCallout() : this.findNearestTree()) }/>
+          <Button type='clear' raised title="Find nearest tree" containerStyle={styles.findNearestTreeButton}
+            onPress={() => this.closestTreeRef.showCallout()}/>
         </View>
       </View>
     );

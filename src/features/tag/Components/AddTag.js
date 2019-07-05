@@ -32,6 +32,13 @@ class AddTag extends Component {
     uploadingTag: false
   }
   
+  static navigationOptions = ({navigation}) => {
+
+    return {
+      title: 'Tag'
+    }
+  }
+  
   uploadTagInfo(species, coords, tagKey, downloadURL) {
     var curationRef = this.props.curationRequired ? 'tags-to-curate/' : 'tags/';
     var tagListRef = firebaseApp.database().ref(curationRef + species.toLowerCase());
