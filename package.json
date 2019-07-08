@@ -12,7 +12,7 @@
     "react": "16.8.3",
     "react-native": "0.59.9",
     "react-native-cached-image": "github:fungilation/react-native-cached-image",
-    "react-native-camera": "^2.10.2",
+    "react-native-camera": "^2.11.0",
     "react-native-elements": "^1.1.0",
     "react-native-fast-image": "^6.0.5",
     "react-native-flash-message": "^0.1.13",

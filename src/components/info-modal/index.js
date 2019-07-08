@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Text, View, StyleSheet, TouchableOpacity, Image, ScrollView} from 'react-native';
+import {Text, View, StyleSheet, TouchableOpacity, Image, ScrollView, Platform} from 'react-native';
 import Ionicon from 'react-native-vector-icons/Ionicons'
 import Share from 'react-native-share';
 import Modal from 'react-native-modal'
@@ -23,9 +23,9 @@ export default class InfoModal extends Component {
           <ScrollView showsVerticalScrollIndicator={false}>
             <About />
             <Features />
-            <ShareApp />
             <Supporters />
             <Acknowledgements />
+            <ShareApp />
           </ScrollView>
         </View>
       </Modal>
@@ -70,7 +70,9 @@ class ShareApp extends Component {
   
   constructor(props) {
     super(props);
-    appURLRef = firebaseApp.database().ref('share-info/app-url');
+    appURLRef = (Platform.OS === 'ios') 
+        ? firebaseApp.database().ref('share-info/app-url')
+        : firebaseApp.database().ref('share-info/play-store-url');
     appURLRef.once('value', (snapshot) => {
       let appURL = snapshot.val();
       let shareOptions = {
@@ -85,10 +87,10 @@ class ShareApp extends Component {
   }
   
   toggleShare() {
-    if (!!this.shareOptions) {
+    if (!!this.state.shareOptions) {
       Share.open(this.state.shareOptions).then((res) => console.log(res)).catch((err) => {err && console.log(err)})
     } else {
-      Share.open({url: 'http://appstore.com/uganda%27s%20trees'}).then((res) => console.log(res)).catch((err) => {err && console.log(err)})
+      Share.open({url: 'https://apps.apple.com/in/app/ugandas-trees/id1471527186'}).then((res) => console.log(res)).catch((err) => {err && console.log(err)})
     }
   }
   

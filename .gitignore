@@ -30,6 +30,8 @@ build/
 local.properties
 *.iml
 
+android/app/my-release-key.keystore
+
 # node.js
 #
 node_modules/

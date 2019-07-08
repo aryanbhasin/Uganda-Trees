@@ -3,6 +3,7 @@ package com.ugandatrees;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import org.reactnative.camera.RNCameraPackage;
 import com.rnfs.RNFSPackage;
 import cl.json.RNSharePackage;
 import com.dylanvann.fastimage.FastImageViewPackage;
@@ -12,7 +13,6 @@ import com.RNFetchBlob.RNFetchBlobPackage;
 import com.swmansion.reanimated.ReanimatedPackage;
 import com.airbnb.android.react.maps.MapsPackage;
 import com.swmansion.rnscreens.RNScreensPackage;
-import org.reactnative.camera.RNCameraPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.facebook.react.ReactNativeHost;
@@ -35,6 +35,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNCameraPackage(),
             new RNFSPackage(),
             new RNSharePackage(),
             new FastImageViewPackage(),
@@ -44,7 +45,6 @@ public class MainApplication extends Application implements ReactApplication {
             new ReanimatedPackage(),
             new MapsPackage(),
             new RNScreensPackage(),
-            new RNCameraPackage(),
             new VectorIconsPackage(),
             new RNGestureHandlerPackage()
       );
