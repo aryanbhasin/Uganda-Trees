@@ -78,6 +78,7 @@ class ShareApp extends Component {
       let shareOptions = {
         url: appURL,
         title: 'Share Uganda\'s Trees',
+        message: 'Download Uganda\'s Trees: ',
       }
       this.setState({shareOptions: shareOptions})
     })
@@ -87,10 +88,11 @@ class ShareApp extends Component {
   }
   
   toggleShare() {
+    console.log(this.state.shareOptions)
     if (!!this.state.shareOptions) {
       Share.open(this.state.shareOptions).then((res) => console.log(res)).catch((err) => {err && console.log(err)})
     } else {
-      Share.open({url: 'https://apps.apple.com/in/app/ugandas-trees/id1471527186'}).then((res) => console.log(res)).catch((err) => {err && console.log(err)})
+      Share.open({url: 'https://apps.apple.com/app/ugandas-trees/id1471527186'}).then((res) => console.log(res)).catch((err) => {err && console.log(err)})
     }
   }
   
@@ -123,11 +125,17 @@ function Supporters() {
   return (
     <View style={styles.sectionContainer}>
       <Text style={styles.header}>Supported By</Text>
-      <View style={{flexDirection: 'row'}}>
+      <View style={{flexDirection: 'row', marginVertical: 5}}>
         <View style={styles.supporterContainer}>
           <Image source={require('UgandaTrees/src/assets/icons/dsl-logo.png')} style={styles.supporterLogo} />
           <Text style={styles.text}>Digital Solutions</Text>
         </View>
+        <View style={styles.supporterContainer}>
+          <Image source={require('UgandaTrees/src/assets/icons/ccfu-logo.png')} style={styles.supporterLogo} />
+          <Text style={styles.text}>CCFU</Text>
+        </View>
+      </View>
+      <View style={{flexDirection: 'row', marginVertical: 5}}>
         <View style={styles.supporterContainer}>
           <Image source={require('UgandaTrees/src/assets/icons/arocha-logo.png')} style={styles.supporterLogo} />
           <Text style={styles.text}>A Rocha Uganda</Text>

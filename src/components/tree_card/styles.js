@@ -7,7 +7,7 @@ export var styles = StyleSheet.create({
 
   cardContainer: {
     alignSelf: 'center',
-    width: width*0.8,
+    width: width*0.87,
     
     backgroundColor: 'white',
     marginVertical: 10,

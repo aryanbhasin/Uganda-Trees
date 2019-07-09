@@ -105,8 +105,8 @@ android {
         applicationId "com.ugandatrees"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.1"
         missingDimensionStrategy 'react-native-camera', 'general'
         missingDimensionStrategy 'react-native-camera', 'mlkit'
     }
@@ -133,6 +133,9 @@ android {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
+    }
+    packagingOptions {
+        exclude 'META-INF/androidx.exifinterface_exifinterface.version'
     }
     // applicationVariants are e.g. debug, release
     applicationVariants.all { variant ->
