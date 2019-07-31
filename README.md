@@ -14,9 +14,9 @@ The app covers all the trees in the National Botanical Gardens geotagged with pi
 letting you take an educational tour to the Gardens for free to learn about species such as Mango, Muvule, and Mahogany.
 
 ### Explore
-<img src="/src/assets/screenshots/x-1.PNG" width="20%">  <img src="/src/assets/screenshots/x-2.PNG" width="20%">  <img src="/src/assets/screenshots/x-3.PNG" width="20%">
-
 Learn more about a tree’s uses, ecology, and propagation, and view stats on its leaves, fruits, seeds, etc. 
+
+<img src="/src/assets/screenshots/x-1.PNG" width="20%">  <img src="/src/assets/screenshots/x-2.PNG" width="20%">  <img src="/src/assets/screenshots/x-3.PNG" width="20%">
 
 ### Tag
 Click a picture of a tree near you and tag it with its location and species to share it with your community.
