@@ -2,6 +2,10 @@
 
 Tag, explore, and learn about Uganda’s indigenous trees! 
 
+**App Store:** [App Store Link](https://apps.apple.com/app/ugandas-trees/id1471527186)
+
+**Play Store:** [Play Store Link](https://play.google.com/store/apps/details?id=com.ugandatrees)
+
 Uganda's Trees is a mobile app built on React Native for tree enthusiasts of Uganda. It captures the wealth of the country's native 
 and common tree species to help you geotag and explore trees nearby.
 
